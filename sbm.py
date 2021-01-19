@@ -35,6 +35,21 @@ def p_location():
 def create_venv(folderpath, vname):
     """新建虚拟环境"""
     os.popen(f'cd {folderpath} && virtualenv {vname}')
+    vpath = folderpath + '/vname'
+    return vpath
+
+
+def activate_venv(vpath):
+    """激活虚拟环境并进入"""
+    msg = os.popen(f'{vpath}/Scripts/activate')
+    return msg
+
+
+def create_pyfiles(vpath, filename):
+    """新建py文件"""
+    filename = filename + '.py'
+    msg = os.popen(f'cd {vpath} && touch {filename}')
+    return msg
 
 
 if __name__ == '__main__':
