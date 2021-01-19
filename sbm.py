@@ -28,6 +28,7 @@ def p_location():
     root.withdraw()
     folderpath = filedialog.askdirectory()
     os.system(f'cd {folderpath} && mkdir pylocation')
+    folderpath = folderpath + '/pylocation'
     return folderpath
 
 
