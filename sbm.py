@@ -39,9 +39,12 @@ def create_venv(folderpath, vname):
     return vpath
 
 
-def activate_venv(vpath):
+def activate_venv(vpath, cmd=None):
     """激活虚拟环境并进入"""
-    msg = os.popen(f'{vpath}/Scripts/activate')
+    if cmd:
+        msg = os.popen(f'{vpath}/Scripts/activate && {cmd}')
+    else:
+        msg = os.popen(f'{vpath}/Scripts/activate')
     return msg
 
 
@@ -49,6 +52,37 @@ def create_pyfiles(vpath, filename):
     """新建py文件"""
     filename = filename + '.py'
     msg = os.popen(f'cd {vpath} && touch {filename}')
+    return msg
+
+
+def exit_env():
+    """退出虚拟环境"""
+    os.popen('deactivate')
+
+
+def switch_env(vpath):
+    """切换虚拟环境"""
+    activate_venv(vpath)
+
+
+def install_package(vpath, pname):
+    """安装第三方库"""
+    cmd = f'pip install {pname}'
+    msg = activate_venv(vpath, cmd)
+    return msg
+
+
+def get_plist(vpath):
+    """获取虚拟环境内安装的第三方库列表"""
+    cmd = 'pip list'
+    msg = activate_venv(vpath, cmd)
+    return msg
+
+
+def uninstall_package(vpath, pname):
+    """卸载第三方库"""
+    cmd = f'pip uninstall {pname}'
+    msg = activate_venv(vpath, cmd)
     return msg
 
 
