@@ -5,7 +5,7 @@ from tkinter import filedialog
 
 def get_interpreter():
     """获取解释器-解释器所在文件夹位置与此文件在同一目录下，并命名为《pyinterpreter》"""
-    interpreter_path = os.path.abspath('') + '/pyinterpreter/python.exe'
+    interpreter_path = os.path.abspath('') + '\pyinterpreter\python.exe'
     return interpreter_path
 
 
@@ -28,23 +28,23 @@ def p_location():
     root.withdraw()
     folderpath = filedialog.askdirectory()
     os.system(f'cd {folderpath} && mkdir pylocation')
-    folderpath = folderpath + '/pylocation'
+    folderpath = folderpath + '\pylocation'
     return folderpath
 
 
 def create_venv(folderpath, vname):
     """新建虚拟环境"""
     os.popen(f'cd {folderpath} && virtualenv {vname}')
-    vpath = folderpath + '/vname'
+    vpath = folderpath + f'\{vname}'
     return vpath
 
 
 def activate_venv(vpath, cmd=None):
     """激活虚拟环境并进入"""
     if cmd:
-        msg = os.popen(f'{vpath}/Scripts/activate && {cmd}')
+        msg = os.popen(rf'{vpath}\Scripts\activate && {cmd}')
     else:
-        msg = os.popen(f'{vpath}/Scripts/activate')
+        msg = os.popen(rf'{vpath}\Scripts\activate')
     return msg
 
 
