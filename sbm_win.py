@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 
-class SbmInit():
+class SbmInit:
     @staticmethod
     def get_interpreter():
         """获取解释器-解释器所在文件夹位置与此文件在同一目录下，并命名为《pyinterpreter》"""
@@ -62,7 +62,7 @@ class VenvOperation:
         self.activate_venv(vpath)
 
 
-class package_operation():
+class ackageOperation:
     @staticmethod
     def install_package(pname, vpath=None):
         """安装第三方库"""
