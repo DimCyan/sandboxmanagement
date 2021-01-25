@@ -1,11 +1,12 @@
 import os
+import re
 import tkinter as tk
 from tkinter import filedialog
 
 
 class SbmInit:
     @staticmethod
-    def get_interpreter():
+    def get_interpreter_path():
         """获取解释器-解释器所在文件夹位置与此文件在同一目录下，并命名为《pyinterpreter》"""
         interpreter_path = os.path.abspath('') + r'\pyinterpreter\python.exe'
         return interpreter_path
@@ -62,7 +63,7 @@ class VenvOperation:
         self.activate_venv(vpath)
 
 
-class ackageOperation:
+class PackageOperation:
     @staticmethod
     def install_package(pname, vpath=None):
         """安装第三方库"""
@@ -89,7 +90,7 @@ class ackageOperation:
         return msg
 
 
-class file_operation():
+class FileOperation():
     @staticmethod
     def create_pyfiles(vpath, filename):
         """新建py文件"""
@@ -98,8 +99,29 @@ class file_operation():
         return msg
 
 
+class SbmInfo():
+    @staticmethod
+    def get_venv_path():
+        """获取venv位置"""
+        sys_get_path = os.popen('lsvirtualvenv').read()
+        searchObj = re.findall(r'"(.*)"', sys_get_path)
+        return searchObj[0]
+
+    @staticmethod
+    def get_venv_name():
+        """获取所有虚拟环境名称"""
+        sys_get_name = os.popen('lsvirtualenv').read()
+        first_str = "=============================================================================="
+        head, sep, tail = sys_get_name.partition(first_str)
+        clean_str = tail
+        next_str = clean_str.split('\n')
+        while '' in next_str:
+            next_str.remove('')
+        print(next_str)
+
+
 if __name__ == '__main__':
-    interpreter_path = SbmInit.get_interpreter()
+    interpreter_path = SbmInit.get_interpreter_path()
     # folderpath = p_location()
     # create_venv(folderpath)
     # update_pip(interpreter_path)
