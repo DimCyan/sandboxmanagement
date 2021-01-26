@@ -1,7 +1,5 @@
 import os
 import re
-import tkinter as tk
-from tkinter import filedialog
 
 
 class SbmInit:
@@ -25,32 +23,35 @@ class SbmInit:
         env_path = os.popen('set Path').read()
         return env_path
 
+    """
     @staticmethod
+    import tkinter as tk
+    from tkinter import filedialog
     def p_location():
-        """选择项目位置"""
+        # 选择项目位置
         root = tk.Tk()
         root.withdraw()
         folderpath = filedialog.askdirectory()
         os.system(f'cd {folderpath} && mkdir pylocation')
         folderpath = folderpath + r'\pylocation'
         return folderpath
+    """
 
 
 class VenvOperation:
     @staticmethod
-    def create_venv(folderpath, vname):
+    def create_venv(vname):
         """新建虚拟环境"""
-        os.popen(f'cd {folderpath} && virtualenv {vname}').read()
-        vpath = folderpath + rf'\{vname}'
-        return vpath
+        msg = os.popen(f'mkvirtualenv {vname}').read()
+        return msg
 
     @staticmethod
-    def activate_venv(vpath, cmd=None):
+    def activate_venv(vname, cmd=None):
         """激活虚拟环境并进入"""
         if cmd:
-            msg = os.popen(rf'{vpath}\Scripts\activate && {cmd}').read()
+            msg = os.popen(f'workon {vname} && {cmd}').read()
         else:
-            msg = os.popen(rf'{vpath}\Scripts\activate').read()
+            msg = os.popen(f'workon {vname}').read()
         return msg
 
     @staticmethod
@@ -58,9 +59,35 @@ class VenvOperation:
         """退出虚拟环境"""
         os.popen('deactivate')
 
-    def switch_env(self, vpath):
-        """切换虚拟环境"""
-        self.activate_venv(vpath)
+    @staticmethod
+    def switch_env():
+        """切换虚拟环境,与激活虚拟环境一致"""
+        pass
+
+    @staticmethod
+    def rm_env(vname):
+        """删除虚拟环境"""
+        msg = os.popen(f'rmvirtualenv {vname}')
+        return msg
+
+    @staticmethod
+    def get_venv_path():
+        """获取venv安装路径"""
+        sys_get_path = os.popen('lsvirtualvenv').read()
+        searchObj = re.findall(r'"(.*)"', sys_get_path)
+        return searchObj[0]
+
+    @staticmethod
+    def get_venv_list():
+        """获取所有虚拟环境名称"""
+        sys_get_name = os.popen('lsvirtualenv').read()
+        first_str = "=============================================================================="
+        head, sep, tail = sys_get_name.partition(first_str)
+        clean_str = tail
+        next_str = clean_str.split('\n')
+        while '' in next_str:
+            next_str.remove('')
+        print(next_str)
 
 
 class PackageOperation:
@@ -99,30 +126,5 @@ class FileOperation():
         return msg
 
 
-class SbmInfo():
-    @staticmethod
-    def get_venv_path():
-        """获取venv位置"""
-        sys_get_path = os.popen('lsvirtualvenv').read()
-        searchObj = re.findall(r'"(.*)"', sys_get_path)
-        return searchObj[0]
-
-    @staticmethod
-    def get_venv_name():
-        """获取所有虚拟环境名称"""
-        sys_get_name = os.popen('lsvirtualenv').read()
-        first_str = "=============================================================================="
-        head, sep, tail = sys_get_name.partition(first_str)
-        clean_str = tail
-        next_str = clean_str.split('\n')
-        while '' in next_str:
-            next_str.remove('')
-        print(next_str)
-
-
 if __name__ == '__main__':
     interpreter_path = SbmInit.get_interpreter_path()
-    # folderpath = p_location()
-    # create_venv(folderpath)
-    # update_pip(interpreter_path)
-    # set_env(interpreter_path)
