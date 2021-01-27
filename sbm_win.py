@@ -1,6 +1,8 @@
 import os
 import re
 
+# 待测试
+
 
 class SbmInit:
     @staticmethod
@@ -37,6 +39,8 @@ class SbmInit:
         return folderpath
     """
 
+# PASS
+
 
 class VenvOperation:
     @staticmethod
@@ -56,24 +60,24 @@ class VenvOperation:
 
     @staticmethod
     def exit_env():
-        """退出虚拟环境"""
+        """退出虚拟环境,pass"""
         os.popen('deactivate')
 
     @staticmethod
     def switch_env():
-        """切换虚拟环境,与激活虚拟环境一致"""
+        """切换虚拟环境,与激活虚拟环境一致,pass"""
         pass
 
     @staticmethod
     def rm_env(vname):
         """删除虚拟环境"""
-        msg = os.popen(f'rmvirtualenv {vname}')
+        msg = os.popen(f'rmvirtualenv {vname}').read()
         return msg
 
     @staticmethod
     def get_venv_path():
         """获取venv安装路径"""
-        sys_get_path = os.popen('lsvirtualvenv').read()
+        sys_get_path = os.popen('lsvirtualenv').read()
         searchObj = re.findall(r'"(.*)"', sys_get_path)
         return searchObj[0]
 
@@ -87,44 +91,105 @@ class VenvOperation:
         next_str = clean_str.split('\n')
         while '' in next_str:
             next_str.remove('')
-        print(next_str)
+        if next_str == []:
+            return 'no venv'
+        else:
+            return next_str
+
+# PASS
 
 
 class PackageOperation:
     @staticmethod
-    def install_package(pname, vpath=None):
+    def install_package(pname, vname=None):
         """安装第三方库"""
         cmd = f'pip install {pname} -i https://pypi.tuna.tsinghua.edu.cn/simple/'
-        if vpath:
-            msg = VenvOperation.activate_venv(vpath, cmd)
+        if vname is not None:
+            msg = VenvOperation.activate_venv(vname, cmd)
             return msg
         else:
             msg = os.popen(cmd).read()
-            return msg
+            return '安装在虚拟环境外\n', msg
 
     @staticmethod
-    def get_plist(vpath):
+    def get_plist(vname):
         """获取虚拟环境内安装的第三方库列表"""
         cmd = 'pip list'
-        msg = VenvOperation.activate_venv(vpath, cmd)
+        msg = VenvOperation.activate_venv(vname, cmd)
         return msg
 
     @staticmethod
-    def uninstall_package(vpath, pname):
+    def uninstall_package(pname, vname):
         """卸载第三方库"""
-        cmd = f'pip uninstall {pname}'
-        msg = VenvOperation.activate_venv(vpath, cmd)
+        cmd = f'pip uninstall {pname} --yes'
+        msg = VenvOperation.activate_venv(vname, cmd)
         return msg
+
+# PASS
 
 
 class FileOperation():
     @staticmethod
-    def create_pyfiles(vpath, filename):
+    def create_file(vname, filename):
         """新建py文件"""
+        vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
         filename = filename + '.py'
-        msg = os.popen(f'cd {vpath} && touch {filename}').read()
+        msg = os.popen(f'cd {vpath} && type nul> {filename}').read()
         return msg
 
+    @staticmethod
+    def del_file(vname, filename):
+        """删除文件"""
+        vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
+        filename = filename + '.py'
+        msg = os.popen(f'cd {vpath} && del {filename}').read()
+        return msg
 
-if __name__ == '__main__':
-    interpreter_path = SbmInit.get_interpreter_path()
+    @staticmethod
+    def rn_file(vname, filename, nfilename):
+        """文件重命名"""
+        vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
+        filename = filename + '.py'
+        nfilename = nfilename + '.py'
+        msg = os.popen(f'cd {vpath} && rename {filename} {nfilename}').read()
+        return msg
+
+# if __name__ == '__main__':
+# interpreter_path = SbmInit.get_interpreter_path()
+# 新增venv
+# c_msg = VenvOperation.create_venv('my_env3')
+# print(c_msg)
+
+# 激活进入
+# a_msg = VenvOperation.activate_venv('my_env','pip list')
+# print(a_msg)
+# 删除
+# r_msg = VenvOperation.rm_env('my_env3')
+# print(r_msg)
+# 获取venv目录路径
+# v_path = VenvOperation.get_venv_path()
+# print(v_path)
+# 打印venvlist
+# venv_list = VenvOperation.get_venv_list()
+# print(venv_list)
+
+# 安装第三方库pillow
+# i_msg = PackageOperation.install_package('pillow','my_env2')
+# print(i_msg)
+
+# 卸载第三方库
+# u_msg = PackageOperation.uninstall_package('pillow','my_env2')
+# print(u_msg)
+# 打印第三方包列表
+# p_list = PackageOperation.get_plist('my_env2')
+# print(p_list)
+
+# 新建文件到venv目录下
+# f_msg = FileOperation.create_file('my_env2','testadd1')
+# print(f_msg)
+# 删除文件
+# d_msg = FileOperation.del_file('my_env2','testadd')
+# print(d_msg)
+# 重命名文件
+# rn_msg = FileOperation.rn_file('my_env2','testadd1','renamefile')
+# print(rn_msg)
