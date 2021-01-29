@@ -153,3 +153,20 @@ class FileOperation():
         nfilename = nfilename + '.py'
         msg = os.popen(f'cd {vpath} && rename {filename} {nfilename}').read()
         return msg
+
+    @staticmethod
+    def get_file_list(vpath):
+        """获取文件夹下文件列表，文件类型（待测试和修改）"""
+        filelist = os.listdir(vpath)
+        print(filelist)
+        for filename in filelist:
+            print(filename)
+            filetype = os.path.splitext(filename)[-1]
+            if filetype == '':
+                pass
+            else:
+                print(filetype)
+            filepath = os.path.join(vpath,filename)
+            print(filepath)
+            if os.path.isdir(filepath):
+                print(filename+' is dir')
