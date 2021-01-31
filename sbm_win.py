@@ -161,7 +161,7 @@ class FileOperation():
 
     @staticmethod
     def get_file_list(vpath):
-        """获取文件夹下文件列表，文件类型（待测试和修改）"""
+        """获取文件夹下文件列表，文件类型（待测试和修改），修改为list类型，新增file_type方法！！！！！！！"""
         filelist = os.listdir(vpath)
         print(filelist)
         for filename in filelist:
