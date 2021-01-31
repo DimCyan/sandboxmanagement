@@ -1,10 +1,8 @@
 import os
 import re
 
-# 待测试
 
-
-class SbmInit:
+class SbmInit:  # 待测试
     @staticmethod
     def get_interpreter_path():
         """获取解释器-解释器所在文件夹位置与此文件在同一目录下，并命名为《pyinterpreter》"""
@@ -39,14 +37,12 @@ class SbmInit:
         return folderpath
     """
 
-# PASS
-
 
 class VenvOperation:
     @staticmethod
     def set_vpath():
         """修改vnev文件路径"""
-        os.environ['WORKON_HOME']='D:\envs'
+        os.environ['WORKON_HOME'] = r'D:\envs'
 
     @staticmethod
     def create_venv(vname):
@@ -105,9 +101,6 @@ class VenvOperation:
             return next_str
 
 
-# PASS
-
-
 class PackageOperation:
     @staticmethod
     def install_package(pname, vname=None):
@@ -134,10 +127,8 @@ class PackageOperation:
         msg = VenvOperation.activate_venv(vname, cmd)
         return msg
 
-# PASS
 
-
-class FileOperation():
+class FileOperation:
     @staticmethod
     def create_file(vname, filename):
         """新建py文件"""
@@ -175,7 +166,7 @@ class FileOperation():
                 pass
             else:
                 print(filetype)
-            filepath = os.path.join(vpath,filename)
+            filepath = os.path.join(vpath, filename)
             print(filepath)
             if os.path.isdir(filepath):
-                print(filename+' is dir')
+                print(filename + ' is dir')
