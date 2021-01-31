@@ -76,6 +76,7 @@ class VenvOperation:
     @staticmethod
     def rm_env(vname):
         """删除虚拟环境"""
+        VenvOperation.set_vpath()
         msg = os.popen(f'rmvirtualenv {vname}').read()
         return msg
 
@@ -89,6 +90,7 @@ class VenvOperation:
     @staticmethod
     def get_venv_list():
         """获取所有虚拟环境名称"""
+        VenvOperation.set_vpath()
         sys_get_name = os.popen('lsvirtualenv').read()
         first_str = "=============================================================================="
         head, sep, tail = sys_get_name.partition(first_str)
@@ -96,10 +98,12 @@ class VenvOperation:
         next_str = clean_str.split('\n')
         while '' in next_str:
             next_str.remove('')
+        # print(next_str)
         if next_str == []:
             return 'no venv'
         else:
             return next_str
+
 
 # PASS
 
