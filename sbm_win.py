@@ -15,7 +15,7 @@ class SbmInit:
     def update_pip(interpreter_path):
         """升级pip版本"""
         msg = os.popen(
-            f'{interpreter_path} -m pip install --upgrade pip').read()
+            f'{interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
         return msg
 
     @staticmethod
@@ -43,6 +43,11 @@ class SbmInit:
 
 
 class VenvOperation:
+    @staticmethod
+    def set_vpath():
+        """修改vnev文件路径"""
+        os.environ['WORKON_HOME']='D:\envs'
+
     @staticmethod
     def create_venv(vname):
         """新建虚拟环境"""
