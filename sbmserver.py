@@ -6,6 +6,7 @@ app.config['JSON_SORT_KEYS'] = False  # 防止jsonify自动按照字母排序
 
 
 @app.route('/')
+@app.route('/index')
 def index():
     vpath = sbm_win.VenvOperation.get_venv_path()
     venv_name = sbm_win.VenvOperation.get_venv_list()
@@ -25,6 +26,20 @@ def index():
             vpath=vpath,
             env_path=env_path)
 
+@app.route('/create_venv')
+def c_venv(vname):
+    c_msg = sbm_win.VenvOperation.create_venv(vname)
+    return c_msg
+
+@app.route('/remove_venv')
+def rm_venv(vname):
+    rm_msg = sbm_win.VenvOperation.rm_env(vname)
+    return rm_msg
+
+@app.route('/activate_venv')
+def ac_venv(vname,cmd):
+    ac_msg = sbm_win.VenvOperation.activate_venv(vname,cmd)
+    return ac_msg
 
 
 if __name__ == '__main__':
