@@ -42,7 +42,8 @@ class VenvOperation:
     @staticmethod
     def set_vpath():
         """修改vnev文件路径"""
-        os.environ['WORKON_HOME'] = r'D:\envs'
+        # os.environ['WORKON_HOME'] = r'D:\envs'
+        pass
 
     @staticmethod
     def create_venv(vname):
