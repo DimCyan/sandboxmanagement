@@ -26,20 +26,32 @@ def index():
             vpath=vpath,
             env_path=env_path)
 
-@app.route('/create_venv')
-def c_venv(vname):
-    c_msg = sbm_win.VenvOperation.create_venv(vname)
-    return c_msg
+@app.route('/create_venv',methods=['GET','POST'])
+def c_venv():
+    if request.method == 'POST':
+        vname = request.values.get('vname')
+        c_msg = sbm_win.VenvOperation.create_venv(vname)
+        return c_msg
+    else:
+        pass
 
-@app.route('/remove_venv')
-def rm_venv(vname):
-    rm_msg = sbm_win.VenvOperation.rm_env(vname)
-    return rm_msg
+@app.route('/remove_venv',methods=['GET','POST'])
+def rm_venv():
+    if request.method == 'POST':
+        vname = request.values.get('vname')
+        rm_msg = sbm_win.VenvOperation.rm_env(vname)
+        return rm_msg
+    else:
+        pass
 
-@app.route('/activate_venv')
-def ac_venv(vname,cmd):
-    ac_msg = sbm_win.VenvOperation.activate_venv(vname,cmd)
-    return ac_msg
+@app.route('/activate_venv',methods=['GET','POST'])
+def ac_venv():
+    if request.method == 'POST':
+        vname = request.values.get('vname')
+        ac_msg = sbm_win.VenvOperation.activate_venv(vname)
+        return ac_msg
+    else:
+        pass
 
 
 if __name__ == '__main__':
