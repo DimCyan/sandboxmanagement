@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
 </head>
 <body>
-    {{vpath}}</br>
+    {{vpath}}<br>
+    <form action="" method="post">
+        <p>virtualenv:<input type="text" name="name"></p>
+        <input type="submit" value="create">
+    </form>
     {% for name in venv_name %}
-    {{name}}</br>
-    {%endfor%}</br>
+    {{name}}<br>
+    {%endfor%}
     {% for env_path in env_path %}
-    {{env_path}}</br>
+    {{env_path}}
     {%endfor%}
 </body>
 </html>

@@ -48,12 +48,14 @@ class VenvOperation:
     @staticmethod
     def create_venv(vname):
         """新建虚拟环境"""
+        VenvOperation.set_vpath()
         msg = os.popen(f'mkvirtualenv {vname}').read()
         return msg
 
     @staticmethod
     def activate_venv(vname, cmd=None):
         """激活虚拟环境并进入"""
+        VenvOperation.set_vpath()
         if cmd:
             msg = os.popen(f'workon {vname} && {cmd}').read()
         else:
@@ -63,6 +65,7 @@ class VenvOperation:
     @staticmethod
     def exit_env():
         """退出虚拟环境,pass"""
+        VenvOperation.set_vpath()
         os.popen('deactivate')
 
     @staticmethod
@@ -80,6 +83,7 @@ class VenvOperation:
     @staticmethod
     def get_venv_path():
         """获取venv安装路径"""
+        VenvOperation.set_vpath()
         sys_get_path = os.popen('lsvirtualenv').read()
         searchObj = re.findall(r'"(.*)"', sys_get_path)
         return searchObj[0]
