@@ -120,8 +120,8 @@ class PackageOperation:
 
     @staticmethod
     def get_plist(vname):
-        """获取虚拟环境内安装的第三方库列表"""
-        cmd = 'pip list'
+        """获取虚拟环境内安装的第三方库列表,需修改！！！！！！！！"""
+        cmd = 'lssitepackages'
         msg = VenvOperation.activate_venv(vname, cmd)
         return msg
 
@@ -175,3 +175,7 @@ class FileOperation:
             print(filepath)
             if os.path.isdir(filepath):
                 print(filename + ' is dir')
+
+# if __name__ == '__main__':
+#     pl_msg = PackageOperation.get_plist('test')
+#     print(pl_msg)
