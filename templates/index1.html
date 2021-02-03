@@ -7,7 +7,8 @@
     {{vpath}}<br>
     <form action="" method="post">
         <p>virtualenv:<input type="text" name="name"></p>
-        <input type="submit" value="create">
+        <input type="submit" name="create" value="新增">
+        <input type="submit" name="remove" value="删除">
     </form>
     {% for name in venv_name %}
     {{name}}<br>
