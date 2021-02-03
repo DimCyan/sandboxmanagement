@@ -8,10 +8,10 @@ app = Flask(__name__)
 @app.route('/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
-        name = request.form.get('name')
-        print(name)
+        vname = request.form.get('name')
+        c_msg = sbm_win.VenvOperation.create_venv(vname)
+        print(c_msg)
         return redirect('/')
-        # c_msg = sbm_win.VenvOperation.create_venv(vname)
         # return vname
     else:
         vpath = sbm_win.VenvOperation.get_venv_path()
