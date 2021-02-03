@@ -40,14 +40,11 @@ def index():
             env_path=env_path)
 
 
-@app.route('/activate_venv', methods=['POST', ])
-def ac_venv():
-    if request.method == 'POST':
-        vname = request.values.get('vname')
-        ac_msg = sbm_win.VenvOperation.activate_venv(vname)
-        return ac_msg
-    else:
-        pass
+@app.route('/detail/<name>')
+def get_venv_detail(name):
+    print(name)
+    # plist = sbm_win.PackageOperation.get_plist(name)
+
 
 
 if __name__ == '__main__':
