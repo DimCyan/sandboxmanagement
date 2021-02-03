@@ -11,8 +11,8 @@
         <input type="submit" name="remove" value="删除">
     </form>
     {% for name in venv_name %}
-    {{name}}<br>
-    {%endfor%}
+    <a href="/detail/{{name}}">{{name}}<br></a>
+    {%endfor%}<br>
     {% for env_path in env_path %}
     {{env_path}}<br>
     {%endfor%}
