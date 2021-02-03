@@ -74,16 +74,16 @@ class EditorWindow(object):
         from idlelib.runscript import ScriptBinding
 
         if EditorWindow.help_url is None:
-            dochome =  os.path.join(sys.base_prefix, 'Doc', 'index.html')
+            dochome =  os.path.join(sys.base_prefix, 'Doc', 'element_button.html')
             if sys.platform.count('linux'):
                 # look for html docs in a couple of standard places
                 pyver = 'python-docs-' + '%s.%s.%s' % sys.version_info[:3]
                 if os.path.isdir('/var/www/html/python/'):  # "python2" rpm
-                    dochome = '/var/www/html/python/index.html'
+                    dochome = '/var/www/html/python/element_button.html'
                 else:
                     basepath = '/usr/share/doc/'  # standard location
                     dochome = os.path.join(basepath, pyver,
-                                           'Doc', 'index.html')
+                                           'Doc', 'element_button.html')
             elif sys.platform[:3] == 'win':
                 chmfile = os.path.join(sys.base_prefix, 'Doc',
                                        'Python%s.chm' % _sphinx_version())
@@ -92,7 +92,7 @@ class EditorWindow(object):
             elif sys.platform == 'darwin':
                 # documentation may be stored inside a python framework
                 dochome = os.path.join(sys.base_prefix,
-                        'Resources/English.lproj/Documentation/index.html')
+                        'Resources/English.lproj/Documentation/element_button.html')
             dochome = os.path.normpath(dochome)
             if os.path.isfile(dochome):
                 EditorWindow.help_url = dochome

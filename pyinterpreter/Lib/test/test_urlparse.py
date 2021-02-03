@@ -770,7 +770,7 @@ class UrlParseTestCase(unittest.TestCase):
         tests = (
             ("http:#frag", "path", "frag"),
             ("//example.net#frag", "path", "frag"),
-            ("index.html#frag", "path", "frag"),
+            ("element_button.html#frag", "path", "frag"),
             (";a=b#frag", "params", "frag"),
             ("?a=b#frag", "query", "frag"),
             ("#frag", "path", "frag"),

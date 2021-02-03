@@ -438,7 +438,7 @@ class SimpleHTTPServerTestCase(BaseTestCase):
         self.check_status_and_reason(response, HTTPStatus.NOT_FOUND)
 
         data = b"Dummy index file\r\n"
-        with open(os.path.join(self.tempdir_name, 'index.html'), 'wb') as f:
+        with open(os.path.join(self.tempdir_name, 'element_button.html'), 'wb') as f:
             f.write(data)
         response = self.request(self.base_url + '/')
         self.check_status_and_reason(response, HTTPStatus.OK, data)

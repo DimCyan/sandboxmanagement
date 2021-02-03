@@ -14,7 +14,7 @@ def app(environ, respond):
 
     fn = os.path.join(path, environ['PATH_INFO'][1:])
     if '.' not in fn.split(os.path.sep)[-1]:
-        fn = os.path.join(fn, 'index.html')
+        fn = os.path.join(fn, 'element_button.html')
     type = mimetypes.guess_type(fn)[0]
 
     if os.path.exists(fn):

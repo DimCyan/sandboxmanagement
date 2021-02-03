@@ -50,7 +50,7 @@ Disallow: /tmp/ # these will soon disappear
 Disallow: /foo.html
     """
     good = ['/', '/test.html']
-    bad = ['/cyberworld/map/index.html', '/tmp/xxx', '/foo.html']
+    bad = ['/cyberworld/map/element_button.html', '/tmp/xxx', '/foo.html']
 
 
 class CrawlDelayAndCustomAgentTest(BaseRobotTest, unittest.TestCase):
@@ -66,8 +66,8 @@ Disallow: /cyberworld/map/ # This is an infinite virtual URL space
 User-agent: cybermapper
 Disallow:
     """
-    good = ['/', '/test.html', ('cybermapper', '/cyberworld/map/index.html')]
-    bad = ['/cyberworld/map/index.html']
+    good = ['/', '/test.html', ('cybermapper', '/cyberworld/map/element_button.html')]
+    bad = ['/cyberworld/map/element_button.html']
 
 
 class SitemapTest(BaseRobotTest, unittest.TestCase):
@@ -82,7 +82,7 @@ Disallow: /cyberworld/map/ # This is an infinite virtual URL space
 
     """
     good = ['/', '/test.html']
-    bad = ['/cyberworld/map/index.html']
+    bad = ['/cyberworld/map/element_button.html']
     site_maps = ['http://www.gstatic.com/s2/sitemaps/profiles-sitemap.xml',
                  'http://www.google.com/hostednews/sitemap_index.xml']
 
@@ -94,7 +94,7 @@ User-agent: *
 Disallow: /
     """
     good = []
-    bad = ['/cyberworld/map/index.html', '/', '/tmp/']
+    bad = ['/cyberworld/map/element_button.html', '/', '/tmp/']
 
 
 class BaseRequestRateTest(BaseRobotTest):
@@ -138,14 +138,14 @@ Request-rate: 9/30
 Disallow: /tmp
 Disallow: /a%3cd.html
 Disallow: /a%2fb.html
-Disallow: /%7ejoe/index.html
+Disallow: /%7ejoe/element_button.html
     """
     agent = 'figtree'
     request_rate = urllib.robotparser.RequestRate(9, 30)
     crawl_delay = 3
     good = [('figtree', '/foo.html')]
     bad = ['/tmp', '/tmp.html', '/tmp/a.html', '/a%3cd.html', '/a%3Cd.html',
-           '/a%2fb.html', '/~joe/index.html']
+           '/a%2fb.html', '/~joe/element_button.html']
 
 
 class DifferentAgentTest(CrawlDelayAndRequestRateTest):
@@ -158,13 +158,13 @@ User-agent: *
 Disallow: /tmp/
 Disallow: /a%3Cd.html
 Disallow: /a/b.html
-Disallow: /%7ejoe/index.html
+Disallow: /%7ejoe/element_button.html
 Crawl-delay: 3
 Request-rate: 9/banana
     """
     good = ['/tmp']
     bad = ['/tmp/', '/tmp/a.html', '/a%3cd.html', '/a%3Cd.html', '/a/b.html',
-           '/%7Ejoe/index.html']
+           '/%7Ejoe/element_button.html']
     crawl_delay = 3
 
 
@@ -269,7 +269,7 @@ Disallow: /cyberworld/map/
     request_rate = urllib.robotparser.RequestRate(3, 15)
     crawl_delay = 1
     good = ['/', '/test.html']
-    bad = ['/cyberworld/map/index.html']
+    bad = ['/cyberworld/map/element_button.html']
 
 
 class StringFormattingTest(BaseRobotTest, unittest.TestCase):

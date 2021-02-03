@@ -1057,7 +1057,7 @@ class HTTPConnection:
         """Send a request to the server.
 
         `method' specifies an HTTP request method, e.g. 'GET'.
-        `url' specifies the object being requested, e.g. '/index.html'.
+        `url' specifies the object being requested, e.g. '/element_button.html'.
         `skip_host' if True does not add automatically a 'Host:' header
         `skip_accept_encoding' if True does not add automatically an
            'Accept-Encoding:' header
