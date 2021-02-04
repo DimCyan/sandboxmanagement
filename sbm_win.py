@@ -127,13 +127,10 @@ class PackageOperation:
             r"(?<===============================================================================).*?"
             r"(?===============================================================================)",
             contents, re.DOTALL)
-        try:
-            mylist = mylist[0].split('\n')
-            while '' in mylist:
-                mylist.remove('')
-            return mylist[:-2]
-        finally:
-            return mylist
+        mylist = mylist[0].split('\n')
+        while '' in mylist:
+            mylist.remove('')
+        return mylist[:-2]
 
     @staticmethod
     def uninstall_package(pname, vname):
