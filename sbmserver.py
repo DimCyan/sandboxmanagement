@@ -51,7 +51,15 @@ def get_venv_detail(name):
             return redirect(url_for('get_venv_detail',name=name))
     else:
         plist = sbm_win.PackageOperation.get_plist(name)
-        return render_template('detail.html',plist=plist)
+        return render_template('detail.html',vname=name,plist=plist)
+
+@app.route('/uninstall/<vname>/<name>')
+def uninstall_package(vname,name):
+    pname = name.split('-')[0]
+    un_msg = sbm_win.PackageOperation.uninstall_package(pname,vname)
+    print(un_msg)
+    return redirect(url_for('get_venv_detail',name=vname))
+
 
 
 

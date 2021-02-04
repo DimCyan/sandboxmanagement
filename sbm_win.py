@@ -186,9 +186,9 @@ class FileOperation:
             if os.path.isdir(filepath):
                 print(filename + ' is dir')
 
-if __name__ == '__main__':
-    pl_msg = PackageOperation.get_plist('test1')
-    print(pl_msg,len(pl_msg))
-    PackageOperation.install_package('pillow','test1')
-    pl_msg = PackageOperation.get_plist('test1')
-    print(pl_msg,len(pl_msg))
+# if __name__ == '__main__':
+#     pl_msg = PackageOperation.get_plist('test1')
+#     print(pl_msg,len(pl_msg))
+#     PackageOperation.install_package('pillow','test1')
+#     pl_msg = PackageOperation.get_plist('test1')
+#     print(pl_msg,len(pl_msg))
