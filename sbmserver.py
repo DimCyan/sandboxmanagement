@@ -1,5 +1,5 @@
 import sbm_win
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 
 app = Flask(__name__, template_folder='./templates')
 # app.config['JSON_SORT_KEYS'] = False  # 防止jsonify自动按照字母排序
@@ -40,10 +40,18 @@ def index():
             env_path=env_path)
 
 
-@app.route('/detail/<name>')
+@app.route('/detail/<name>', methods=['GET', 'POST'])
 def get_venv_detail(name):
-    plist = sbm_win.PackageOperation.get_plist(name)
-    return render_template('detail.html',plist=plist)
+    if request.method == 'POST':
+        c_submit = request.form.get('install')
+        if c_submit == '安装':
+            pname = request.form.get('name')
+            i_msg = sbm_win.PackageOperation.install_package(pname,name)
+            print(i_msg)
+            return redirect(url_for('get_venv_detail',name=name))
+    else:
+        plist = sbm_win.PackageOperation.get_plist(name)
+        return render_template('detail.html',plist=plist)
 
 
 

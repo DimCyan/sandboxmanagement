@@ -124,12 +124,16 @@ class PackageOperation:
         cmd = 'lssitepackages'
         contents = VenvOperation.activate_venv(vname, cmd)
         mylist = re.findall(
-            r"(?<===============================================================================).*?(?===============================================================================)",
+            r"(?<===============================================================================).*?"
+            r"(?===============================================================================)",
             contents, re.DOTALL)
-        mylist = mylist[0].split('\n')
-        while '' in mylist:
-            mylist.remove('')
-        return mylist[:-2]
+        try:
+            mylist = mylist[0].split('\n')
+            while '' in mylist:
+                mylist.remove('')
+            return mylist[:-2]
+        finally:
+            return mylist
 
     @staticmethod
     def uninstall_package(pname, vname):
@@ -182,6 +186,9 @@ class FileOperation:
             if os.path.isdir(filepath):
                 print(filename + ' is dir')
 
-# if __name__ == '__main__':
-#     pl_msg = PackageOperation.get_plist('test')
-#     print(pl_msg)
+if __name__ == '__main__':
+    pl_msg = PackageOperation.get_plist('test1')
+    print(pl_msg,len(pl_msg))
+    PackageOperation.install_package('pillow','test1')
+    pl_msg = PackageOperation.get_plist('test1')
+    print(pl_msg,len(pl_msg))

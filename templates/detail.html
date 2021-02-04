@@ -5,6 +5,10 @@
 </head>
 <body>
     <a href="/">返回</a><br>
+    <form action="" method="post">
+        <p>sitepackage:<input type="text" name="name"></p>
+        <input type="submit" name="install" value="安装">
+    </form>
     {% for name in plist %}
     {{name}}<br>
     {%endfor%}
