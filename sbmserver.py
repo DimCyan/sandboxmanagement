@@ -42,8 +42,8 @@ def index():
 
 @app.route('/detail/<name>')
 def get_venv_detail(name):
-    print(name)
-    # plist = sbm_win.PackageOperation.get_plist(name)
+    plist = sbm_win.PackageOperation.get_plist(name)
+    return render_template('detail.html',plist=plist)
 
 
 

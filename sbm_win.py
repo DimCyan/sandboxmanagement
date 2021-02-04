@@ -122,8 +122,14 @@ class PackageOperation:
     def get_plist(vname):
         """获取虚拟环境内安装的第三方库列表,需修改！！！！！！！！"""
         cmd = 'lssitepackages'
-        msg = VenvOperation.activate_venv(vname, cmd)
-        return msg
+        contents = VenvOperation.activate_venv(vname, cmd)
+        mylist = re.findall(
+            r"(?<===============================================================================).*?(?===============================================================================)",
+            contents, re.DOTALL)
+        mylist = mylist[0].split('\n')
+        while '' in mylist:
+            mylist.remove('')
+        return mylist[:-2]
 
     @staticmethod
     def uninstall_package(pname, vname):
