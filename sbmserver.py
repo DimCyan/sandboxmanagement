@@ -46,21 +46,20 @@ def get_venv_detail(name):
         c_submit = request.form.get('install')
         if c_submit == '安装':
             pname = request.form.get('name')
-            i_msg = sbm_win.PackageOperation.install_package(pname,name)
+            i_msg = sbm_win.PackageOperation.install_package(pname, name)
             print(i_msg)
-            return redirect(url_for('get_venv_detail',name=name))
+            return redirect(url_for('get_venv_detail', name=name))
     else:
         plist = sbm_win.PackageOperation.get_plist(name)
-        return render_template('detail.html',vname=name,plist=plist)
+        return render_template('detail.html', vname=name, plist=plist)
+
 
 @app.route('/uninstall/<vname>/<name>')
-def uninstall_package(vname,name):
+def uninstall_package(vname, name):
     pname = name.split('-')[0]
-    un_msg = sbm_win.PackageOperation.uninstall_package(pname,vname)
+    un_msg = sbm_win.PackageOperation.uninstall_package(pname, vname)
     print(un_msg)
-    return redirect(url_for('get_venv_detail',name=vname))
-
-
+    return redirect(url_for('get_venv_detail', name=vname))
 
 
 if __name__ == '__main__':
