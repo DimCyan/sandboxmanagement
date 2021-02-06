@@ -16,10 +16,11 @@ class SbmInit:  # 待测试
         return scriptes_path
 
     @staticmethod
-    def update_pip(interpreter_path):
+    def upgrade_pip(interpreter_path):
         """升级pip版本"""
         scripts_path = SbmInit.get_scripts_path()
-        msg = os.popen(f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
+        msg = os.popen(
+            f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
         return msg
 
     @staticmethod
