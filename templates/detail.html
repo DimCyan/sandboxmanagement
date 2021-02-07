@@ -5,14 +5,20 @@
 </head>
 <body>
     <p>当前虚拟环境：{{vname}}
-    <a href="/">返回</a><br></p>
+    <a href="/">返回</a><br>
+    </p>
     <form action="" method="post">
         <p>sitepackage:<input type="text" name="name">
-        <input type="submit" name="install" value="安装"></p>
+        <input type="submit" name="install" value="安装">
+        </p>
     </form>
     第三方库(sitepackages)列表<br>
     {% for name in plist %}
     {{name}}&nbsp<a href="/uninstall/{{vname}}/{{name}}">删除</a><br>
-    {%endfor%}
+    {%endfor%}<br><br>
+    <form action="" enctype='multipart/form-data' method='POST'>
+        <input type="file" name="file">
+        <input type="submit" name="upload" value="上传">
+    </form>
 </body>
 </html>

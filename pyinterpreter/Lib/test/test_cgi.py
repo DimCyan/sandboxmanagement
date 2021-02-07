@@ -310,7 +310,7 @@ Content-Length: 3
         self.maxDiff = None
         def check(content):
             data = """---123
-Content-Disposition: form-data; name="upload"; filename="fake.txt"
+Content-Disposition: form-data; name="uploads"; filename="fake.txt"
 Content-Type: text/plain
 
 %s
@@ -322,7 +322,7 @@ Content-Type: text/plain
                 'REQUEST_METHOD':   'POST',
             }
             self.assertEqual(gen_result(data, environ),
-                             {'upload': content.encode('latin1')})
+                             {'uploads': content.encode('latin1')})
         check('x' * (maxline - 1))
         check('x' * (maxline - 1) + '\r')
         check('x' * (maxline - 1) + '\r' + 'y' * (maxline - 1))
@@ -503,7 +503,7 @@ Content-Disposition: form-data; name="key4"
 
 value4
 ---123
-Content-Disposition: form-data; name="upload"; filename="fake.txt"
+Content-Disposition: form-data; name="uploads"; filename="fake.txt"
 Content-Type: text/plain
 
 this is the content of the fake file
@@ -518,7 +518,7 @@ this is the content of the fake file
         }
         result = self._qs_result.copy()
         result.update({
-            'upload': b'this is the content of the fake file\n'
+            'uploads': b'this is the content of the fake file\n'
         })
         v = gen_result(data, environ)
         self.assertEqual(result, v)

@@ -1,9 +1,5 @@
 import os
 import re
-import tkinter as tk
-from tkinter import filedialog
-
-from werkzeug.utils import secure_filename
 
 
 class SbmInit:  # 待测试
@@ -14,46 +10,50 @@ class SbmInit:  # 待测试
         return interpreter_path
 
     @staticmethod
-    def get_scripts_path():
-        """获取pip位置"""
-        scriptes_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
-        return scriptes_path
-
-    @staticmethod
-    def upgrade_pip(interpreter_path):
+    def update_pip(interpreter_path):
         """升级pip版本"""
-        scripts_path = SbmInit.get_scripts_path()
         msg = os.popen(
-            f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
+            f'{interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
         return msg
 
     @staticmethod
-    def get_pyf_path():
-        """选择py脚本"""
+    def set_env(interpreter_path):
+        """更改环境变量"""
+        os.system(f'set Path={interpreter_path};%Path%')
+        env_path = os.popen('set Path').read()
+        return env_path
+
+    """
+    @staticmethod
+    import tkinter as tk
+    from tkinter import filedialog
+    def p_location():
+        # 选择项目位置
         root = tk.Tk()
         root.withdraw()
-        filepath = filedialog.askopenfilename()
-        return filepath
+        folderpath = filedialog.askdirectory()
+        os.system(f'cd {folderpath} && mkdir pylocation')
+        folderpath = folderpath + r'\pylocation'
+        return folderpath
+    """
 
 
 class VenvOperation:
     @staticmethod
     def set_vpath():
         """修改vnev文件路径"""
-        os.environ['WORKON_HOME'] = r'D:\envs'
-        # pass
+        # os.environ['WORKON_HOME'] = r'D:\envs'
+        pass
 
     @staticmethod
     def create_venv(vname):
         """新建虚拟环境"""
-        VenvOperation.set_vpath()
         msg = os.popen(f'mkvirtualenv {vname}').read()
         return msg
 
     @staticmethod
     def activate_venv(vname, cmd=None):
         """激活虚拟环境并进入"""
-        VenvOperation.set_vpath()
         if cmd:
             msg = os.popen(f'workon {vname} && {cmd}').read()
         else:
@@ -63,7 +63,6 @@ class VenvOperation:
     @staticmethod
     def exit_env():
         """退出虚拟环境,pass"""
-        VenvOperation.set_vpath()
         os.popen('deactivate')
 
     @staticmethod
@@ -81,7 +80,6 @@ class VenvOperation:
     @staticmethod
     def get_venv_path():
         """获取venv安装路径"""
-        VenvOperation.set_vpath()
         sys_get_path = os.popen('lsvirtualenv').read()
         searchObj = re.findall(r'"(.*)"', sys_get_path)
         return searchObj[0]
@@ -118,17 +116,10 @@ class PackageOperation:
 
     @staticmethod
     def get_plist(vname):
-        """获取虚拟环境内安装的第三方库列表,需修改！！！！！！！！"""
-        cmd = 'lssitepackages'
-        contents = VenvOperation.activate_venv(vname, cmd)
-        mylist = re.findall(
-            r"(?<===============================================================================).*?"
-            r"(?===============================================================================)",
-            contents, re.DOTALL)
-        mylist = mylist[0].split('\n')
-        while '' in mylist:
-            mylist.remove('')
-        return mylist[:-2]
+        """获取虚拟环境内安装的第三方库列表"""
+        cmd = 'pip list'
+        msg = VenvOperation.activate_venv(vname, cmd)
+        return msg
 
     @staticmethod
     def uninstall_package(pname, vname):
@@ -140,15 +131,8 @@ class PackageOperation:
 
 class FileOperation:
     @staticmethod
-    def get_file_name(file):
-        basepath = os.path.dirname('')
-        upload_path = os.path.join(basepath, r'static\uploads',
-                                   secure_filename(file.filename))
-        file.save(upload_path)
-        return upload_path
-    """@staticmethod
     def create_file(vname, filename):
-        """"新建py文件""""
+        """新建py文件"""
         vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
         filename = filename + '.py'
         msg = os.popen(f'cd {vpath} && type nul> {filename}').read()
@@ -156,7 +140,7 @@ class FileOperation:
 
     @staticmethod
     def del_file(vname, filename):
-        """"删除文件""""
+        """删除文件"""
         vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
         filename = filename + '.py'
         msg = os.popen(f'cd {vpath} && del {filename}').read()
@@ -164,7 +148,7 @@ class FileOperation:
 
     @staticmethod
     def rn_file(vname, filename, nfilename):
-        """"文件重命名""""
+        """文件重命名"""
         vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
         filename = filename + '.py'
         nfilename = nfilename + '.py'
@@ -173,7 +157,7 @@ class FileOperation:
 
     @staticmethod
     def get_file_list(vpath):
-        """"获取文件夹下文件列表，文件类型（待测试和修改），修改为list类型，新增file_type方法！！！！！！！""""
+        """获取文件夹下文件列表，文件类型（待测试和修改），修改为list类型，新增file_type方法！！！！！！！"""
         filelist = os.listdir(vpath)
         print(filelist)
         for filename in filelist:
@@ -186,4 +170,4 @@ class FileOperation:
             filepath = os.path.join(vpath, filename)
             print(filepath)
             if os.path.isdir(filepath):
-                print(filename + ' is dir')"""
+                print(filename + ' is dir')

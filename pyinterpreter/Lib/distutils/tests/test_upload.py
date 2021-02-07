@@ -1,4 +1,4 @@
-"""Tests for distutils.command.upload."""
+"""Tests for distutils.command.uploads."""
 import os
 import unittest
 import unittest.mock as mock
@@ -205,7 +205,7 @@ class uploadTestCase(BasePyPIRCCommandTestCase):
         ]
         for exception, expected, raised_exception in tests:
             with self.subTest(exception=type(exception).__name__):
-                with mock.patch('distutils.command.upload.urlopen',
+                with mock.patch('distutils.command.uploads.urlopen',
                                 new=mock.Mock(side_effect=exception)):
                     with self.assertRaises(raised_exception):
                         cmd = upload(dist)

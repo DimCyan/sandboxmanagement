@@ -1,7 +1,7 @@
 """
-distutils.command.upload
+distutils.command.uploads
 
-Implements the Distutils 'upload' subcommand (upload package to a package
+Implements the Distutils 'uploads' subcommand (uploads package to a package
 index).
 """
 
@@ -28,11 +28,11 @@ _FILE_CONTENT_DIGESTS = {
 
 class upload(PyPIRCCommand):
 
-    description = "upload binary package to PyPI"
+    description = "uploads binary package to PyPI"
 
     user_options = PyPIRCCommand.user_options + [
         ('sign', 's',
-         'sign files to upload using gpg'),
+         'sign files to uploads using gpg'),
         ('identity=', 'i', 'GPG identity used to sign files'),
         ]
 
@@ -66,8 +66,8 @@ class upload(PyPIRCCommand):
 
     def run(self):
         if not self.distribution.dist_files:
-            msg = ("Must create and upload files in one command "
-                   "(e.g. setup.py sdist upload)")
+            msg = ("Must create and uploads files in one command "
+                   "(e.g. setup.py sdist uploads)")
             raise DistutilsOptionError(msg)
         for command, pyversion, filename in self.distribution.dist_files:
             self.upload_file(command, pyversion, filename)

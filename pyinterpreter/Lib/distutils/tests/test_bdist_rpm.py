@@ -79,7 +79,7 @@ class BuildRpmTestCase(support.TempdirManager,
         dist_created = os.listdir(os.path.join(pkg_dir, 'dist'))
         self.assertIn('foo-0.1-1.noarch.rpm', dist_created)
 
-        # bug #2945: upload ignores bdist_rpm files
+        # bug #2945: uploads ignores bdist_rpm files
         self.assertIn(('bdist_rpm', 'any', 'dist/foo-0.1-1.src.rpm'), dist.dist_files)
         self.assertIn(('bdist_rpm', 'any', 'dist/foo-0.1-1.noarch.rpm'), dist.dist_files)
 
@@ -122,7 +122,7 @@ class BuildRpmTestCase(support.TempdirManager,
         dist_created = os.listdir(os.path.join(pkg_dir, 'dist'))
         self.assertIn('foo-0.1-1.noarch.rpm', dist_created)
 
-        # bug #2945: upload ignores bdist_rpm files
+        # bug #2945: uploads ignores bdist_rpm files
         self.assertIn(('bdist_rpm', 'any', 'dist/foo-0.1-1.src.rpm'), dist.dist_files)
         self.assertIn(('bdist_rpm', 'any', 'dist/foo-0.1-1.noarch.rpm'), dist.dist_files)
 

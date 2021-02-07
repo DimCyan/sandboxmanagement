@@ -88,10 +88,10 @@ class FTP:
 
     To download a file, use ftp.retrlines('RETR ' + filename),
     or ftp.retrbinary() with slightly different arguments.
-    To upload a file, use ftp.storlines() or ftp.storbinary(),
+    To uploads a file, use ftp.storlines() or ftp.storbinary(),
     which have an open file as argument (see their definitions
     below for details).
-    The download/upload functions first issue appropriate TYPE
+    The download/uploads functions first issue appropriate TYPE
     and PORT or PASV commands.
     '''
 

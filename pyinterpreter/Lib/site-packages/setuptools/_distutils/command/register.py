@@ -171,7 +171,7 @@ Your selection [default 1]: ''', log.INFO)
             if code == 200:
                 if self.has_config:
                     # sharing the password in the distribution instance
-                    # so the upload command can reuse it
+                    # so the uploads command can reuse it
                     self.distribution.password = password
                 else:
                     self.announce(('I can store your PyPI login so future '
