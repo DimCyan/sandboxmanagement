@@ -10,11 +10,10 @@
         <input type="submit" name="create" value="新增">
         <input type="submit" name="remove" value="删除"></p>
     </form>
-    {% for name in venv_name %}
-    虚拟环境：<a href="/detail/{{name}}">{{name}}<br></a>
-    {%endfor%}<br>
-    {% for env_path in env_path %}
-    虚拟环境路径：{{env_path}}<br>
-    {%endfor%}
+    {% for info in venv_info %}
+    <a href="/detail/{{info.vname}}">{{info.vname}}</a>&nbsp
+    {{info.vpath}}&nbsp
+    {{info.mtime}}<br>
+    {% endfor %}
 </body>
 </html>

@@ -33,11 +33,23 @@ def index():
             for env_name in venv_name:
                 sub_vpath = vpath + f'\\{env_name}'
                 env_path.append(sub_vpath)
+            env_mtime = []
+            for path in env_path:
+                path_mtime = sbm_win.VenvOperation.get_venv_mtime(path)
+                env_mtime.append(path_mtime)
+            venv_info = []
+            for i in range(len(venv_name)):
+                info = {
+                    'vname': venv_name[i],
+                    'vpath': env_path[i],
+                    'mtime': env_mtime[i]}
+                venv_info.append(info)
+            print(venv_info)
         return render_template(
             'index1.html',
-            venv_name=venv_name,
+            venv_info=venv_info,
             vpath=vpath,
-            env_path=env_path)
+        )
 
 
 @app.route('/detail/<name>', methods=['GET', 'POST'])
@@ -52,9 +64,9 @@ def get_venv_detail(name=None):
         u_submit = request.form.get('upload')
         if u_submit == '上传':
             file = request.files['file']
-            upload_path = sbm_win.FileOperation.get_file_name(file)
+            upload_path = sbm_win.FileOperation.get_file_payh(file)
             print(upload_path)
-            return redirect(url_for('get_venv_detail',name=name))
+            return redirect(url_for('get_venv_detail', name=name))
     else:
         plist = sbm_win.PackageOperation.get_plist(name)
         return render_template('detail.html', vname=name, plist=plist)

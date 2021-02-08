@@ -1,5 +1,6 @@
 import os
 import re
+import time
 import tkinter as tk
 from tkinter import filedialog
 
@@ -97,11 +98,18 @@ class VenvOperation:
         next_str = clean_str.split('\n')
         while '' in next_str:
             next_str.remove('')
-        # print(next_str)
         if next_str == []:
             return 'no venv'
         else:
             return next_str
+
+    @staticmethod
+    def get_venv_mtime(vpath):
+        """获取虚拟环境修改日期"""
+        return time.strftime(
+            "%Y--%m--%d %H:%M:%S",
+            time.localtime(
+                os.path.getmtime(vpath)))
 
 
 class PackageOperation:
@@ -140,7 +148,8 @@ class PackageOperation:
 
 class FileOperation:
     @staticmethod
-    def get_file_name(file):
+    def get_file_path(file):
+        """获取上传文件的路径"""
         basepath = os.path.dirname('')
         upload_path = os.path.join(basepath, r'static\uploads',
                                    secure_filename(file.filename))
