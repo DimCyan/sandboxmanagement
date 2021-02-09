@@ -41,7 +41,9 @@ class VenvOperation:
     @staticmethod
     def set_vpath():
         """修改vnev文件路径"""
-        os.environ['WORKON_HOME'] = r'D:\envs'
+        base_path = os.path.abspath('') + r'\Envs'
+        # os.environ['WORKON_HOME'] = r'D:\envs'
+        os.environ['WORKON_HOME'] = fr'{base_path}'
         # pass
 
     @staticmethod
@@ -155,44 +157,3 @@ class FileOperation:
                                    secure_filename(file.filename))
         file.save(upload_path)
         return upload_path
-    """@staticmethod
-    def create_file(vname, filename):
-        """"新建py文件""""
-        vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
-        filename = filename + '.py'
-        msg = os.popen(f'cd {vpath} && type nul> {filename}').read()
-        return msg
-
-    @staticmethod
-    def del_file(vname, filename):
-        """"删除文件""""
-        vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
-        filename = filename + '.py'
-        msg = os.popen(f'cd {vpath} && del {filename}').read()
-        return msg
-
-    @staticmethod
-    def rn_file(vname, filename, nfilename):
-        """"文件重命名""""
-        vpath = VenvOperation.get_venv_path() + '\\' + f'{vname}' + '\\'
-        filename = filename + '.py'
-        nfilename = nfilename + '.py'
-        msg = os.popen(f'cd {vpath} && rename {filename} {nfilename}').read()
-        return msg
-
-    @staticmethod
-    def get_file_list(vpath):
-        """"获取文件夹下文件列表，文件类型（待测试和修改），修改为list类型，新增file_type方法！！！！！！！""""
-        filelist = os.listdir(vpath)
-        print(filelist)
-        for filename in filelist:
-            print(filename)
-            filetype = os.path.splitext(filename)[-1]
-            if filetype == '':
-                pass
-            else:
-                print(filetype)
-            filepath = os.path.join(vpath, filename)
-            print(filepath)
-            if os.path.isdir(filepath):
-                print(filename + ' is dir')"""

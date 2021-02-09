@@ -64,7 +64,7 @@ def get_venv_detail(name=None):
         u_submit = request.form.get('upload')
         if u_submit == '上传':
             file = request.files['file']
-            upload_path = sbm_win.FileOperation.get_file_payh(file)
+            upload_path = sbm_win.FileOperation.get_file_path(file)
             print(upload_path)
             return redirect(url_for('get_venv_detail', name=name))
     else:

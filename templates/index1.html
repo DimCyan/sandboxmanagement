@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
 </head>
 <body>
-    {{vpath}}<br>
+    虚拟环境路径：&nbsp{{vpath}}<br>
+    <button onclick="add()"></button>
     <form action="" method="post">
         <p>virtualenv:<input type="text" name="name">
         <input type="submit" name="create" value="新增">
@@ -16,4 +17,9 @@
     {{info.mtime}}<br>
     {% endfor %}
 </body>
+<script>
+    function add() {
+        prompt('please enter a name:')
+    }
+</script>
 </html>
