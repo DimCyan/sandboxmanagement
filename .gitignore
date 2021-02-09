@@ -1,2 +1,4 @@
-sandboxmanagement/static/uploads/
-sandboxmanagement/Envs/
+static/uploads/*
+!static/uploads/init.py
+Envs/*
+!Envs/init.py
