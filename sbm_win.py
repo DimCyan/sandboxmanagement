@@ -1,9 +1,6 @@
 import os
 import re
 import time
-import tkinter as tk
-from tkinter import filedialog
-
 from werkzeug.utils import secure_filename
 
 
@@ -27,14 +24,6 @@ class SbmInit:  # 待测试
         msg = os.popen(
             f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
         return msg
-
-    @staticmethod
-    def get_pyf_path():
-        """选择py脚本"""
-        root = tk.Tk()
-        root.withdraw()
-        filepath = filedialog.askopenfilename()
-        return filepath
 
 
 class VenvOperation:
@@ -109,7 +98,7 @@ class VenvOperation:
     def get_venv_mtime(vpath):
         """获取虚拟环境修改日期"""
         return time.strftime(
-            "%Y--%m--%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S",
             time.localtime(
                 os.path.getmtime(vpath)))
 
@@ -128,17 +117,22 @@ class PackageOperation:
 
     @staticmethod
     def get_plist(vname):
-        """获取虚拟环境内安装的第三方库列表,需修改！！！！！！！！"""
-        cmd = 'lssitepackages'
+        """获取虚拟环境内安装的第三方库列表，返回名称列表，版本列表"""
+        cmd = 'pip list'
         contents = VenvOperation.activate_venv(vname, cmd)
-        mylist = re.findall(
-            r"(?<===============================================================================).*?"
-            r"(?===============================================================================)",
-            contents, re.DOTALL)
-        mylist = mylist[0].split('\n')
-        while '' in mylist:
-            mylist.remove('')
-        return mylist[:-2]
+        first_str = "---------- -------"
+        head, sep, tail = contents.partition(first_str)
+        clean_str = tail
+        next_str = clean_str.split('\n')
+        while '' in next_str:
+            next_str.remove('')
+        p_name_list = []
+        p_version_list = []
+        for i in next_str:
+            head, sep, tail = i.partition(' ')
+            p_name_list.append(head)
+            p_version_list.append(tail.replace(" ", ""))
+        return p_name_list,p_version_list
 
     @staticmethod
     def uninstall_package(pname, vname):
@@ -157,3 +151,7 @@ class FileOperation:
                                    secure_filename(file.filename))
         file.save(upload_path)
         return upload_path
+
+# if __name__ == '__main__':
+#     content = PackageOperation.get_plist('test')
+#     print(content[0])

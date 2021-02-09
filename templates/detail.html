@@ -13,8 +13,8 @@
         </p>
     </form>
     第三方库(sitepackages)列表<br>
-    {% for name in plist %}
-    {{name}}&nbsp<a href="/uninstall/{{vname}}/{{name}}">删除</a><br>
+    {% for info in p_info %}
+    {{info.p_name}}&nbsp{{info.p_version}}&nbsp<a href="/uninstall/{{vname}}/{{name}}">删除</a><br>
     {%endfor%}<br><br>
     <form action="" enctype='multipart/form-data' method='POST'>
         <input type="file" name="file">

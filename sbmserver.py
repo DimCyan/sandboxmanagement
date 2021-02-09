@@ -68,8 +68,16 @@ def get_venv_detail(name=None):
             print(upload_path)
             return redirect(url_for('get_venv_detail', name=name))
     else:
-        plist = sbm_win.PackageOperation.get_plist(name)
-        return render_template('detail.html', vname=name, plist=plist)
+        p_name_list = sbm_win.PackageOperation.get_plist(name)[0]
+        p_version_list = sbm_win.PackageOperation.get_plist(name)[1]
+        p_info = []
+        for i in range(len(p_name_list)):
+            info = {
+                'p_name': p_name_list[i],
+                'p_version': p_version_list[i]}
+            p_info.append(info)
+        print(p_info)
+        return render_template('detail.html', vname=name, p_info=p_info)
 
 
 @app.route('/uninstall/<vname>/<name>')
