@@ -14,12 +14,12 @@ def index():
             c_msg = sbm_win.VenvOperation.create_venv(vname)
             print(c_msg)
             return redirect('/')
-        r_submit = request.form.get('remove')
-        if r_submit == '删除':
-            vname = request.form.get('name')
-            rm_msg = sbm_win.VenvOperation.rm_env(vname)
-            print(rm_msg)
-            return redirect('/')
+        # r_submit = request.form.get('remove')
+        # if r_submit == '删除':
+        #     vname = request.form.get('name')
+        #     rm_msg = sbm_win.VenvOperation.rm_env(vname)
+        #     print(rm_msg)
+        #     return redirect('/')
     else:
         vpath = sbm_win.VenvOperation.get_venv_path()
         venv_name = sbm_win.VenvOperation.get_venv_list()
@@ -51,6 +51,11 @@ def index():
             vpath=vpath,
         )
 
+@app.route('/delete/<name>')
+def rm_venv(name):
+    rm_msg = sbm_win.VenvOperation.rm_env(name)
+    print(rm_msg)
+    return redirect('/')
 
 @app.route('/detail/<name>', methods=['GET', 'POST'])
 def get_venv_detail(name=None):

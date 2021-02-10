@@ -150,7 +150,9 @@
     {% for info in venv_info %}
     <div class="index-card">
     <div class="delete" style="position: relative">
-        <p class="delete" style="position:absolute;font-size:small;padding-left:99%;padding-right:1%">❌</p>
+        <p class="delete" style="position:absolute;font-size:small;padding-left:99%;padding-right:1%">
+            <a href="/delete/{{info.vname}}">❌</a>
+        </p>
     </div>
       <article class="index-card-info">
         <h3 class="index-header">
