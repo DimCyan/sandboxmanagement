@@ -12,7 +12,7 @@
         <input type="submit" name="remove" value="删除"></p>
     </form>
     {% for info in venv_info %}
-    <a href="/detail/{{info.vname}}">{{info.vname}}</a>&nbsp
+    <a href="/detail/{{info.vname}}" target="_blank">{{info.vname}}</a>&nbsp
     {{info.vpath}}&nbsp
     {{info.mtime}}<br>
     {% endfor %}

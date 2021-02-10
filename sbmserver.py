@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder='./templates')
 def index():
     if request.method == 'POST':
         c_submit = request.form.get('create')
-        if c_submit == '新增':
+        if c_submit == '➕':
             vname = request.form.get('name')
             c_msg = sbm_win.VenvOperation.create_venv(vname)
             print(c_msg)
@@ -46,7 +46,7 @@ def index():
                 venv_info.append(info)
             print(venv_info)
         return render_template(
-            'index1.html',
+            'index.html',
             venv_info=venv_info,
             vpath=vpath,
         )
