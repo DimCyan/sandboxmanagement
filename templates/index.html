@@ -74,7 +74,6 @@
     --post-sec-text-color: #a7a9ad;
     --sec-bkg: #364151;
 }
-
 </style>
 </head>
     <body>
@@ -137,14 +136,21 @@
         </div>
     </div>
 </div>
-
-
+<style>
+    .delete{
+        cursor: pointer;
+        opacity: 0;
+    }
+    .delete:hover{
+        opacity: 1;
+    }
+</style>
 <div class="post-card-center">
 <div class="post-card-main">
     {% for info in venv_info %}
     <div class="index-card">
     <div class="delete" style="position: relative">
-        <p style="position: absolute;font-size: small;padding-left: 99%;padding-right: 1%">❌</p>
+        <p class="delete" style="position:absolute;font-size:small;padding-left:99%;padding-right:1%">❌</p>
     </div>
       <article class="index-card-info">
         <h3 class="index-header">
