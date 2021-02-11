@@ -14,12 +14,6 @@ def index():
             c_msg = sbm_win.VenvOperation.create_venv(vname)
             print(c_msg)
             return redirect('/')
-        # r_submit = request.form.get('remove')
-        # if r_submit == '删除':
-        #     vname = request.form.get('name')
-        #     rm_msg = sbm_win.VenvOperation.rm_env(vname)
-        #     print(rm_msg)
-        #     return redirect('/')
     else:
         vpath = sbm_win.VenvOperation.get_venv_path()
         venv_name = sbm_win.VenvOperation.get_venv_list()
@@ -61,16 +55,10 @@ def rm_venv(name):
 def get_venv_detail(name=None):
     if request.method == 'POST':
         c_submit = request.form.get('install')
-        if c_submit == '安装':
+        if c_submit == '📌':
             pname = request.form.get('name')
             i_msg = sbm_win.PackageOperation.install_package(pname, name)
             print(i_msg)
-            return redirect(url_for('get_venv_detail', name=name))
-        u_submit = request.form.get('upload')
-        if u_submit == '上传':
-            file = request.files['file']
-            upload_path = sbm_win.FileOperation.get_file_path(file)
-            print(upload_path)
             return redirect(url_for('get_venv_detail', name=name))
     else:
         p_name_list = sbm_win.PackageOperation.get_plist(name)[0]

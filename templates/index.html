@@ -103,16 +103,13 @@
 		</div>
 		<div class="flexItem show">
 			<ul>
-<!--          			<li><a href="https://miracle-demo.now.sh/">Home</a></li>-->
-<!--          			<li><a href="https://miracle-demo.now.sh/archives">Archives</a></li>-->
-<!--          			<li><a href="https://miracle-demo.now.sh/categories">Categories</a></li>-->
-<!--          			<li><a href="https://miracle-demo.now.sh/tags">Tags</a></li>-->
-<!--                    <li><a href="https://miracle-demo.now.sh/links">Create</a></li>-->
                 <li><form action="" method="post">
-                    <input type="text" name="name" style="border:none;background: #c4c6c9;border-radius:3px;text-align:center" placeholder="Enter venv name">&nbsp
+                    <input type="text" name="name" style="border:none;background: #c4c6c9;border-radius:3px;text-align:center"
+                           placeholder="Enter venv name" title="Enter the name of the new venv">&nbsp
                     <input type="submit" name="create" value="➕" style="border:none;background:none;cursor:pointer;" title="Create Venv">
                 </form></li>
-				<li title="Search"><a href="https://miracle-demo.now.sh/search/" id="search-btn"><i class="fas meta-icon" style="font-style:normal">🔍</i></a></li>
+                <li><a href="/">📙</a></li>
+				<li title="Search"><a href="" id="search-btn"><i class="fas meta-icon" style="font-style:normal" title="Coming Soon">🔍</i></a></li>
 				<li title="Display Mode"><a href="javascript:;"><i class="fas meta-icon" id="toggle-dark-icon" style="font-style:normal">🌗</i></a></li>
 			</ul>
 		</div>
@@ -151,7 +148,7 @@
     <div class="index-card">
     <div class="delete" style="position: relative">
         <p class="delete" style="position:absolute;font-size:small;padding-left:99%;padding-right:1%">
-            <a href="/delete/{{info.vname}}">❌</a>
+            <a href="/delete/{{info.vname}}" title="Remove">❌</a>
         </p>
     </div>
       <article class="index-card-info">

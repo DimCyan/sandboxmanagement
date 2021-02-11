@@ -1,24 +1,304 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" data-user-color-scheme="light">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://miracle-demo.now.sh/img/favicon.png">
+    <link rel="icon" type="image/png" href="https://miracle-demo.now.sh/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <title>VEG</title>
+    <meta name="description" content="">
+    <meta name="author" content="SimonWDC">
+    <meta name="keywords" content="">
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.min.css') }}">
+<style>
+    :root{
+        --shadow-color: rgba(0,0,0,0.2);
+        --sec-shadow: rgba(0,0,0,0.1);
+        --shadow-hover-color: rgba(0,0,0,0.28);
+        --first-text-color: #484848;
+        --second-text-color: #4c4c4c;
+        --third-text-color: #858585;
+        --default-text-color: #505050;
+        --default-link-color: #007bff;
+        --link-color: #000000;
+        --second-link-color: #4F9BFA;
+        --post-bkg-color: #fdfdfd;
+        --page-bkg-color: #ffffff;
+        --nav-bkg-color: rgba(253,253,253,0.5);
+        --nav-a-hover-color: #3498db;
+        --post-sec-text-color: #718096;
+        --sec-bkg: #f2f5f8;
+        --color-mode: 'light';
+    }
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-mode: 'dark';
+  }
+
+  :root:not([data-user-color-scheme]) {
+    --shadow-color: rgba(0,0,0,0.2);
+    --shadow-hover-color: rgba(0,0,0,0.28);
+    --first-text-color: #ddd;
+    --second-text-color: #c4c6c9;
+    --third-text-color: #a7a9ad;
+    --default-text-color: #505050;
+    --default-link-color: #1589e9;
+    --link-color: #000000;
+    --second-link-color: #30a9de;
+    --post-bkg-color: #3b3b3c;
+    --page-bkg-color: #3b3b3b;
+    --nav-bkg-color: #3b3b3c;
+    --nav-a-hover-color: #3498db;
+    --post-sec-text-color: #a7a9ad;
+    --sec-bkg: #364151;
+  }
+}
+
+[data-user-color-scheme='dark'] {
+    --shadow-color: rgba(0,0,0,0.2);
+    --shadow-hover-color: rgba(0,0,0,0.28);
+    --first-text-color: #ddd;
+    --second-text-color: #c4c6c9;
+    --third-text-color: #a7a9ad;
+    --default-text-color: #505050;
+    --default-link-color: #1589e9;
+    --link-color: #000000;
+    --second-link-color: #30a9de;
+    --post-bkg-color: #3b3b3c;
+    --page-bkg-color: #3b3b3b;
+    --nav-bkg-color: #3b3b3c;
+    --nav-a-hover-color: #3498db;
+    --post-sec-text-color: #a7a9ad;
+    --sec-bkg: #364151;
+}
+</style>
 </head>
-<body>
-    <p>当前虚拟环境：{{vname}}
-    <a href="/">返回</a><br>
-    </p>
-    <form action="" method="post">
-        <p>sitepackage:<input type="text" name="name">
-        <input type="submit" name="install" value="安装">
-        </p>
-    </form>
-    第三方库(sitepackages)列表<br>
+    <body>
+            <div class="c-loading display-none">
+                <svg width="35px" height="35px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                      <animatetransform attributeName="transform" type="rotate" values="0 33 33;270 33 33" begin="0s" dur="1.4s" fill="freeze" repeatCount="indefinite"></animatetransform>
+                      <circle fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30" stroke-dasharray="187" stroke-dashoffset="610">
+                        <animate attributeName="stroke" values="#4285F4;#DE3E35;#F7C223;#1B9A59;#4285F4" begin="0s" dur="5.6s" fill="freeze" repeatCount="indefinite"></animate>
+                        <animatetransform attributeName="transform" type="rotate" values="0 33 33;135 33 33;450 33 33" begin="0s" dur="1.4s" fill="freeze" repeatCount="indefinite"></animatetransform>
+                        <animate attributeName="stroke-dashoffset" values="187;46.75;187" begin="0s" dur="1.4s" fill="freeze" repeatCount="indefinite"></animate>
+                      </circle>
+                     </g>
+                  </svg>
+            </div>
+        <header>
+            <div class="c-nav">
+	<div class="container navFlex">
+		<div class="flexItem">
+      		<a href="/">
+        		<h1 class="logo">VEG</h1>
+      		</a>
+		</div>
+		
+		<div class="flexItem hiden logo">
+			<i class="fa fa-bars btnImg"></i>
+		</div>
+		<div class="flexItem show">
+			<ul>
+                <li><form action="" method="post">
+                    <input type="text" name="name" style="border:none;background: #c4c6c9;border-radius:3px;text-align:center" placeholder="Enter sitepackage name" title="Enter the name of installion sitepackage">&nbsp
+                    <input type="submit" name="install" value="📌" style="border:none;background:none;cursor:pointer;" title="Install sitepackage">
+                </form></li>
+                <li><a href="/">📙</a></li>
+				<li title="Display Mode"><a href="javascript:;"><i class="fas meta-icon" id="toggle-dark-icon" style="font-style:normal">🌗</i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+        </header>
+        <div id="page-main" class="main-content">
+        <div class="mg-top">
+<style>
+    .delete{
+        cursor: pointer;
+        opacity: 0;
+    }
+    .delete:hover{
+        opacity: 1;
+    }
+</style>
+<div class="post-card-center">
+<div class="post-card-main">
     {% for info in p_info %}
-    {{info.p_name}}&nbsp{{info.p_version}}&nbsp<a href="/uninstall/{{vname}}/{{name}}">删除</a><br>
-    {%endfor%}<br><br>
-    <form action="" enctype='multipart/form-data' method='POST'>
-        <input type="file" name="file">
-        <input type="submit" name="upload" value="上传">
-    </form>
+    <div class="index-card" style="padding-bottom: 5px">
+    <div class="delete" style="position: relative">
+        <p class="delete" style="position:absolute;font-size:small;padding-left:99%;padding-right:1%">
+            <a href="/uninstall/{{vname}}/{{info.p_name}}" title="uninstall">❌</a>
+        </p>
+    </div>
+      <article class="index-card-info">
+          <style>
+              .index-header{
+                  float: left;
+              }
+              .index-excerpt a{
+                  float: left;
+              }
+          </style>
+        <p class="index-excerpt">
+            <div class="name_d">
+          <a href="/detail/{{info.vname}}"target="_blank" class="p_name"><h3>{{info.p_name}}</h3></a></div>
+          <div class="version_d">
+              <a href="/detail/{{info.vname}}"class="p_version">👉{{info.p_version}}</a></p></div>
+      </article>
+    </div>
+    {% endfor %}
+</div>
+</div>
+        </div>
+        </div>
+        <footer class="text-center">
+    <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> | Theme is <a href="https://github.com/hifun-team/hexo-theme-miracle" target="_blank">Miracle</a></p>
+</footer>
+<div class="p-btn">
+    <a href="#" class="click-btn" title="Go Up"><i class="fas" style="font-style:normal">👆</i></a>
+</div>
+<!-- SCRIPTS -->
+<script>
+
+</script>
+<script>
+    var toggle = true;
+    // 导航栏按钮
+    $('.btnImg').click(function() {
+        if (toggle) {
+            toggle = false
+            $(".btnImg").removeClass("fa-bars");
+            $(".btnImg").addClass("fa-times");
+        } else {
+            toggle = true;
+            $(".btnImg").removeClass("fa-times");
+            $(".btnImg").addClass("fa-bars");
+        }
+        $(".show").slideToggle(300);
+    });
+    // 窗口大小发生改变
+    $(window).resize(function() {
+        // 获取窗口宽度
+        var windSize = $(window).width();
+
+        if (windSize > 885) {
+            $(".show").slideDown(0);
+        }
+    });
+    
+    var cToggle = true;
+    $('.collapse .header').click(function() {
+        if (cToggle) {
+            cToggle = false
+            $(".collapse .header .icon").removeClass("fas fa-chevron-down");
+            $(".collapse .header .icon").addClass("fas fa-chevron-up");
+        } else {
+          cToggle = true;
+          $(".collapse .header .icon").removeClass("fas fa-chevron-up");
+          $(".collapse .header .icon").addClass("fas fa-chevron-down");
+        }
+        $(".collapse .content").slideToggle(250);
+    });
+    console.log('\n' + ' %c Virtualenv GUI Theme by Miracle' + ' %c https://github.com/SimonWDC/sandboxmanagement ' + '\n' + '\n', 'color: #fff; background: #4F9BFA; padding:5px 0;', 'background: #FFF; padding:5px 0;');
+</script>
+<script>
+        document.onreadystatechange = function(){
+            if(document.readyState == "complete"){
+              $(".c-loading").addClass("display-none")
+            }
+        }
+</script>
+<script>
+const rootElement = document.documentElement; // <html>
+const darkModeStorageKey = 'user-color-scheme'; // 作为 localStorage 的 key
+const darkModeMediaQueryKey = '--color-mode';
+const rootElementDarkModeAttributeName = 'data-user-color-scheme';
+const darkModeTogglebuttonElement = document.getElementById("toggle-dark-icon");
+const setLS = (k, v) => {
+  try {
+    localStorage.setItem(k, v);
+  } catch (e) { }
+}
+
+const removeLS = (k) => {
+  try {
+    localStorage.removeItem(k);
+  } catch (e) { }
+}
+
+const getLS = (k) => {
+  try {
+    return localStorage.getItem(k);
+  } catch (e) {
+    return null // 与 localStorage 中没有找到对应 key 的行为一致
+  }
+}
+const getModeFromCSSMediaQuery = () => {
+  const res = getComputedStyle(rootElement).getPropertyValue(darkModeMediaQueryKey);
+  if (res.length) return res.replace(/\"/g, '').trim();
+  return res === 'dark' ? 'dark' : 'light';
+  
+  // 使用 matchMedia API 的写法会优雅的多
+  // return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+}
+const validColorModeKeys = {
+  'dark': true,
+  'light': true
+}
+
+const applyCustomDarkModeSettings = (mode) => {
+  // 接受从「开关」处传来的模式，或者从 localStorage 读取
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    // 当用户自定义的显示模式和 prefers-color-scheme 相同时重置、恢复到自动模式
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) { // 相比 Array#indexOf，这种写法 Uglify 后字节数更少
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    // 首次访问或从未使用过开关、localStorage 中没有存储的值，currentSetting 是 null
+    // 或者 localStorage 被篡改，currentSetting 不是合法值
+    resetRootDarkModeAttributeAndLS();
+  }
+}
+const invertDarkModeObj = {
+  'dark': 'light',
+  'light': 'dark'
+}
+
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+  
+  if (validColorModeKeys[currentSetting]) {
+    // 从 localStorage 中读取模式，并取相反的模式
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    // localStorage 中没有相关值，或者 localStorage 抛了 Error
+    // 从 CSS 中读取当前 prefers-color-scheme 并取相反的模式
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    // 不知道出了什么幺蛾子，比如 localStorage 被篡改成非法值
+    return; // 直接 return;
+  }
+  // 将相反的模式写入 localStorage
+  setLS(darkModeStorageKey, currentSetting);
+
+  return currentSetting;
+}
+// 当页面加载时，将显示模式设置为 localStorage 中自定义的值（如果有的话）
+applyCustomDarkModeSettings();
+darkModeTogglebuttonElement.addEventListener('click', () => {
+  // 当用户点击「开关」时，获得新的显示模式、写入 localStorage、并在页面上生效
+  applyCustomDarkModeSettings(toggleCustomDarkMode());
+});
+</script>
 </body>
 </html>
