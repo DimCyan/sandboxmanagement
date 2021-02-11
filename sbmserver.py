@@ -45,11 +45,13 @@ def index():
             vpath=vpath,
         )
 
+
 @app.route('/delete/<name>')
 def rm_venv(name):
     rm_msg = sbm_win.VenvOperation.rm_env(name)
     print(rm_msg)
     return redirect('/')
+
 
 @app.route('/detail/<name>', methods=['GET', 'POST'])
 def get_venv_detail(name=None):

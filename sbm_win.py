@@ -18,8 +18,9 @@ class SbmInit:  # 待测试
         return scriptes_path
 
     @staticmethod
-    def upgrade_pip(interpreter_path):
+    def upgrade_pip():
         """升级pip版本"""
+        interpreter_path = SbmInit.get_interpreter_path()
         scripts_path = SbmInit.get_scripts_path()
         msg = os.popen(
             f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
@@ -31,25 +32,26 @@ class VenvOperation:
     def set_vpath():
         """修改vnev文件路径"""
         base_path = os.path.abspath('') + r'\Envs'
-        # os.environ['WORKON_HOME'] = r'D:\envs'
         os.environ['WORKON_HOME'] = fr'{base_path}'
-        # pass
 
     @staticmethod
     def create_venv(vname):
         """新建虚拟环境"""
         VenvOperation.set_vpath()
-        msg = os.popen(f'mkvirtualenv {vname}').read()
+        scripts_path = SbmInit.get_scripts_path()
+        msg = os.popen(f'cd /d {scripts_path} && mkvirtualenv {vname}').read()
         return msg
 
     @staticmethod
     def activate_venv(vname, cmd=None):
         """激活虚拟环境并进入"""
         VenvOperation.set_vpath()
+        scripts_path = SbmInit.get_scripts_path()
         if cmd:
-            msg = os.popen(f'workon {vname} && {cmd}').read()
+            msg = os.popen(
+                f'cd /d {scripts_path} && workon {vname} && {cmd}').read()
         else:
-            msg = os.popen(f'workon {vname}').read()
+            msg = os.popen(f'cd /d {scripts_path} && workon {vname}').read()
         return msg
 
     @staticmethod
@@ -67,14 +69,16 @@ class VenvOperation:
     def rm_env(vname):
         """删除虚拟环境"""
         VenvOperation.set_vpath()
-        msg = os.popen(f'rmvirtualenv {vname}').read()
+        scripts_path = SbmInit.get_scripts_path()
+        msg = os.popen(f'cd /d {scripts_path} && rmvirtualenv {vname}').read()
         return msg
 
     @staticmethod
     def get_venv_path():
         """获取venv安装路径"""
         VenvOperation.set_vpath()
-        sys_get_path = os.popen('lsvirtualenv').read()
+        scripts_path = SbmInit.get_scripts_path()
+        sys_get_path = os.popen(f'cd /d {scripts_path} && lsvirtualenv').read()
         searchObj = re.findall(r'"(.*)"', sys_get_path)
         return searchObj[0]
 
@@ -82,7 +86,8 @@ class VenvOperation:
     def get_venv_list():
         """获取所有虚拟环境名称"""
         VenvOperation.set_vpath()
-        sys_get_name = os.popen('lsvirtualenv').read()
+        scripts_path = SbmInit.get_scripts_path()
+        sys_get_name = os.popen(f'cd /d {scripts_path} && lsvirtualenv').read()
         first_str = "=============================================================================="
         head, sep, tail = sys_get_name.partition(first_str)
         clean_str = tail
@@ -132,7 +137,7 @@ class PackageOperation:
             head, sep, tail = i.partition(' ')
             p_name_list.append(head)
             p_version_list.append(tail.replace(" ", ""))
-        return p_name_list,p_version_list
+        return p_name_list, p_version_list
 
     @staticmethod
     def uninstall_package(pname, vname):
@@ -142,15 +147,15 @@ class PackageOperation:
         return msg
 
 
-class FileOperation:
-    @staticmethod
-    def get_file_path(file):
-        """获取上传文件的路径"""
-        basepath = os.path.dirname('')
-        upload_path = os.path.join(basepath, r'static\uploads',
-                                   secure_filename(file.filename))
-        file.save(upload_path)
-        return upload_path
+# class FileOperation:
+#     @staticmethod
+#     def get_file_path(file):
+#         """获取上传文件的路径，暂时不用此功能"""
+#         basepath = os.path.dirname('')
+#         upload_path = os.path.join(basepath, r'static\uploads',
+#                                    secure_filename(file.filename))
+#         file.save(upload_path)
+#         return upload_path
 
 # if __name__ == '__main__':
 #     content = PackageOperation.get_plist('test')
