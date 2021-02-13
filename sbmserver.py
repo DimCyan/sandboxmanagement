@@ -7,6 +7,7 @@ app = Flask(__name__, template_folder='./templates')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    sbm_win.SbmInit.upgrade_pip()
     if request.method == 'POST':
         c_submit = request.form.get('create')
         if c_submit == '➕':

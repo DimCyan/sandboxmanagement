@@ -22,9 +22,18 @@ class SbmInit:  # 待测试
         """升级pip版本"""
         interpreter_path = SbmInit.get_interpreter_path()
         scripts_path = SbmInit.get_scripts_path()
-        msg = os.popen(
-            f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
-        return msg
+        suc_file_path = os.path.abspath('') + r'\pyinterpreter\sucupgrade.txt'
+        if os.path.exists(suc_file_path):
+            return 'upgraded'
+        else:
+            msg = os.popen(
+                f'cd /d {scripts_path} && '
+                f'{interpreter_path} -m pip install --upgrade pip --no-warn-script-location '
+                f'-i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
+            suc_file = open(suc_file_path, 'w+')
+            suc_file.write('upgrade successful')
+            suc_file.close()
+            return msg
 
 
 class VenvOperation:
@@ -156,7 +165,3 @@ class PackageOperation:
 #                                    secure_filename(file.filename))
 #         file.save(upload_path)
 #         return upload_path
-
-# if __name__ == '__main__':
-#     content = PackageOperation.get_plist('test')
-#     print(content[0])
