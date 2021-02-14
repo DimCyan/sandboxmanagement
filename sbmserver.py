@@ -1,7 +1,7 @@
 import sbm_win
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 
-app = Flask(__name__, template_folder='./templates')
+app = Flask(__name__,template_folder='templates',static_folder='static')
 # app.config['JSON_SORT_KEYS'] = False  # 防止jsonify自动按照字母排序
 
 

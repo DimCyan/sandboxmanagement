@@ -30,9 +30,8 @@ class SbmInit:  # 待测试
                 f'cd /d {scripts_path} && '
                 f'{interpreter_path} -m pip install --upgrade pip --no-warn-script-location '
                 f'-i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
-            suc_file = open(suc_file_path, 'w+')
-            suc_file.write('upgrade successful')
-            suc_file.close()
+            with open(suc_file_path, 'w+') as suc_file:
+                suc_file.write('upgrade successful')
             return msg
 
 

@@ -2,3 +2,5 @@ static/uploads/*
 !static/uploads/init.py
 Envs/*
 !Envs/init.py
+.idea/
+__pycache__
