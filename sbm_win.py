@@ -1,7 +1,6 @@
 import os
 import re
 import time
-from werkzeug.utils import secure_filename
 
 
 class SbmInit:  # 待测试
@@ -26,10 +25,9 @@ class SbmInit:  # 待测试
         if os.path.exists(suc_file_path):
             return 'upgraded'
         else:
+            # os.system(f'cd /d {scripts_path} && md Envs')
             msg = os.popen(
-                f'cd /d {scripts_path} && '
-                f'{interpreter_path} -m pip install --upgrade pip --no-warn-script-location '
-                f'-i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
+                f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip --no-warn-script-location -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
             with open(suc_file_path, 'w+') as suc_file:
                 suc_file.write('upgrade successful')
             return msg
@@ -39,8 +37,10 @@ class VenvOperation:
     @staticmethod
     def set_vpath():
         """修改vnev文件路径"""
-        base_path = os.path.abspath('') + r'\Envs'
+        # base_path = os.path.abspath('') + r'\pyinterpreter\Scripts\Envs'
+        base_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
         os.environ['WORKON_HOME'] = fr'{base_path}'
+        return base_path
 
     @staticmethod
     def create_venv(vname):
@@ -164,3 +164,10 @@ class PackageOperation:
 #                                    secure_filename(file.filename))
 #         file.save(upload_path)
 #         return upload_path
+
+# if __name__ == '__main__':
+#     pass
+    # c_msg = VenvOperation.create_venv('test')
+    # print(c_msg)
+    # s_msg = VenvOperation.set_vpath()
+    # print(s_msg)
