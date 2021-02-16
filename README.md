@@ -6,6 +6,8 @@
 
 ## 1. Install
 
+通过👉[链接](https://github.com/SimonWDC/sandboxmanagement/releases/tag/v0.1)下载程序和解释器（支持python版本3.X，若需要可更换不同版本的解释器，需将解释器文件夹命名为`pyinterpreter`）
+
 1. 第一次安装，解压`sandboxmanagement.zip`后，双击`firstrun.bat`安装依赖和升级pip（安装过程中请不要关闭窗口）
 
    ![](https://github.com/SimonWDC/sandboxmanagement/blob/main/img/Snipaste_2021-02-16_21-45-11.png)
@@ -31,4 +33,3 @@
 5. 显示第三方库列表，在输入框中输入第三方库名称，点击安装可通过pip安装第三方库，鼠标移动到第三方库卡片右上角可点击卸载第三方库
 
    ![](https://github.com/SimonWDC/sandboxmanagement/blob/main/img/Snipaste_2021-02-16_21-51-13.png)
-
