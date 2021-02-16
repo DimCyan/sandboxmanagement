@@ -37,7 +37,6 @@ class VenvOperation:
     @staticmethod
     def set_vpath():
         """修改vnev文件路径"""
-        # base_path = os.path.abspath('') + r'\pyinterpreter\Scripts\Envs'
         base_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
         os.environ['WORKON_HOME'] = fr'{base_path}'
         return base_path
@@ -57,9 +56,9 @@ class VenvOperation:
         scripts_path = SbmInit.get_scripts_path()
         if cmd:
             msg = os.popen(
-                f'cd /d {scripts_path} && workon {vname} && {cmd}').read()
+                rf'cd /d {scripts_path}\{vname}\Scripts && {cmd}').read()
         else:
-            msg = os.popen(f'cd /d {scripts_path} && workon {vname}').read()
+            msg = os.popen(rf'cd /d {scripts_path}\{vname}\Scripts').read()
         return msg
 
     @staticmethod
@@ -166,8 +165,5 @@ class PackageOperation:
 #         return upload_path
 
 # if __name__ == '__main__':
-#     pass
-    # c_msg = VenvOperation.create_venv('test')
-    # print(c_msg)
-    # s_msg = VenvOperation.set_vpath()
-    # print(s_msg)
+#     vl = PackageOperation.get_plist('test')
+#     print(vl)
