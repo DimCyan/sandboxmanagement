@@ -16,21 +16,21 @@ class SbmInit:  # 待测试
         scriptes_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
         return scriptes_path
 
-    @staticmethod
-    def upgrade_pip():
-        """升级pip版本"""
-        interpreter_path = SbmInit.get_interpreter_path()
-        scripts_path = SbmInit.get_scripts_path()
-        suc_file_path = os.path.abspath('') + r'\pyinterpreter\sucupgrade.txt'
-        if os.path.exists(suc_file_path):
-            return 'upgraded'
-        else:
-            # os.system(f'cd /d {scripts_path} && md Envs')
-            msg = os.popen(
-                f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip --no-warn-script-location -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
-            with open(suc_file_path, 'w+') as suc_file:
-                suc_file.write('upgrade successful')
-            return msg
+    # @staticmethod
+    # def upgrade_pip():
+    #     """升级pip版本"""
+    #     interpreter_path = SbmInit.get_interpreter_path()
+    #     scripts_path = SbmInit.get_scripts_path()
+    #     suc_file_path = os.path.abspath('') + r'\pyinterpreter\sucupgrade.txt'
+    #     if os.path.exists(suc_file_path):
+    #         return 'upgraded'
+    #     else:
+    #         # os.system(f'cd /d {scripts_path} && md Envs')
+    #         msg = os.popen(
+    #             f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip --no-warn-script-location -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
+    #         with open(suc_file_path, 'w+') as suc_file:
+    #             suc_file.write('upgrade successful')
+    #         return msg
 
 
 class VenvOperation:
