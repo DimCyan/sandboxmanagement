@@ -153,16 +153,12 @@ class PackageOperation:
         msg = VenvOperation.activate_venv(vname, cmd)
         return msg
 
+class CodePlace():
+    @staticmethod
+    def open_code():
+        os.popen()
 
-# class FileOperation:
-#     @staticmethod
-#     def get_file_path(file):
-#         """获取上传文件的路径，暂时不用此功能"""
-#         basepath = os.path.dirname('')
-#         upload_path = os.path.join(basepath, r'static\uploads',
-#                                    secure_filename(file.filename))
-#         file.save(upload_path)
-#         return upload_path
+
 
 # if __name__ == '__main__':
 #     vl = PackageOperation.get_plist('test')
