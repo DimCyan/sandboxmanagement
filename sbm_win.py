@@ -3,7 +3,7 @@ import re
 import time
 
 
-class SbmInit:  # 待测试
+class SbmInit:
     @staticmethod
     def get_interpreter_path():
         """获取解释器-解释器所在文件夹位置与此文件在同一目录下，并命名为《pyinterpreter》"""
@@ -15,23 +15,6 @@ class SbmInit:  # 待测试
         """获取pip位置"""
         scriptes_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
         return scriptes_path
-
-    # @staticmethod
-    # def upgrade_pip():
-    #     """升级pip版本"""
-    #     interpreter_path = SbmInit.get_interpreter_path()
-    #     scripts_path = SbmInit.get_scripts_path()
-    #     suc_file_path = os.path.abspath('') + r'\pyinterpreter\sucupgrade.txt'
-    #     if os.path.exists(suc_file_path):
-    #         return 'upgraded'
-    #     else:
-    #         # os.system(f'cd /d {scripts_path} && md Envs')
-    #         msg = os.popen(
-    #             f'cd /d {scripts_path} && {interpreter_path} -m pip install --upgrade pip --no-warn-script-location -i https://pypi.tuna.tsinghua.edu.cn/simple/').read()
-    #         with open(suc_file_path, 'w+') as suc_file:
-    #             suc_file.write('upgrade successful')
-    #         return msg
-
 
 class VenvOperation:
     @staticmethod
@@ -114,7 +97,6 @@ class VenvOperation:
             time.localtime(
                 os.path.getmtime(vpath)))
 
-
 class PackageOperation:
     @staticmethod
     def install_package(pname, vname=None):
@@ -152,14 +134,3 @@ class PackageOperation:
         cmd = f'pip uninstall {pname} --yes'
         msg = VenvOperation.activate_venv(vname, cmd)
         return msg
-
-class CodePlace():
-    @staticmethod
-    def open_code():
-        os.popen()
-
-
-
-# if __name__ == '__main__':
-#     vl = PackageOperation.get_plist('test')
-#     print(vl)

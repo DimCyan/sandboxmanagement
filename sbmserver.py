@@ -2,12 +2,10 @@ import sbm_win
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 
 app = Flask(__name__,template_folder='./templates',static_folder='./static')
-# app.config['JSON_SORT_KEYS'] = False  # 防止jsonify自动按照字母排序
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    # sbm_win.SbmInit.upgrade_pip()
     if request.method == 'POST':
         c_submit = request.form.get('create')
         if c_submit == '➕':
