@@ -16,6 +16,7 @@ class SbmInit:
         scriptes_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
         return scriptes_path
 
+
 class VenvOperation:
     @staticmethod
     def set_vpath():
@@ -96,6 +97,7 @@ class VenvOperation:
             "%Y-%m-%d %H:%M:%S",
             time.localtime(
                 os.path.getmtime(vpath)))
+
 
 class PackageOperation:
     @staticmethod
