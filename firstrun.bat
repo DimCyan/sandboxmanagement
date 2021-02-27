@@ -1,4 +1,6 @@
 @echo off
+type .\info.txt
+echo.
 echo Pleae Wait and Don't close this window!!!!!
 cd pyinterpreter
 python -m pip install --upgrade pip
