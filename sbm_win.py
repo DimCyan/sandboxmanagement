@@ -149,7 +149,3 @@ class PackageOperation:
         cmd = f'pip uninstall {pname} --yes'
         msg = VenvOperation.activate_venv(vname, cmd)
         return msg
-
-
-if __name__ == '__main__':
-    SbmInit.open_vscode()
