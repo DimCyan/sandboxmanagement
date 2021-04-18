@@ -1,5 +1,5 @@
 import sbm_win
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 
 app = Flask(__name__, template_folder='./templates', static_folder='./static')
 
@@ -81,6 +81,15 @@ def uninstall_package(vname, name):
     print(un_msg)
     return redirect(url_for('get_venv_detail', name=vname))
 
+@app.route('/code/')
+@app.route('/code/<vname>')
+def code(vname=None):
+    if vname:
+        sbm_win.SbmInit.open_vscode()
+        return redirect(url_for('get_venv_detail', name=vname))
+    else:
+        sbm_win.SbmInit.open_vscode()
+        return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
