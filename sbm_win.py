@@ -1,6 +1,7 @@
 import os
 import re
 import time
+import json
 
 
 class SbmInit:
@@ -15,6 +16,18 @@ class SbmInit:
         """获取pip位置"""
         scriptes_path = os.path.abspath('') + r'\pyinterpreter\Scripts'
         return scriptes_path
+
+    @staticmethod
+    def open_vscode():
+        """打开编辑器及设置默认解释器路径"""
+        interpreter_path = os.path.abspath('') + r'\pyinterpreter\python.exe'
+        setting_path = os.path.abspath('') + r'\Code\data\user-data\User\settings.json'
+        py_path = {'python.pythonPath': interpreter_path}
+        with open(setting_path, "r+", encoding='utf-8') as jsonFile:
+            json.dump(py_path, jsonFile)
+        code_path = os.path.abspath('') + r'\Code'
+        code_cmd_result = os.popen(f'cd {code_path} && Code.exe')
+        return code_cmd_result
 
 
 class VenvOperation:
@@ -70,8 +83,8 @@ class VenvOperation:
         VenvOperation.set_vpath()
         scripts_path = SbmInit.get_scripts_path()
         sys_get_path = os.popen(f'cd /d {scripts_path} && lsvirtualenv').read()
-        searchObj = re.findall(r'"(.*)"', sys_get_path)
-        return searchObj[0]
+        searchobj = re.findall(r'"(.*)"', sys_get_path)
+        return searchobj[0]
 
     @staticmethod
     def get_venv_list():
@@ -85,7 +98,7 @@ class VenvOperation:
         next_str = clean_str.split('\n')
         while '' in next_str:
             next_str.remove('')
-        if next_str == []:
+        if not next_str:
             return 'no venv'
         else:
             return next_str
@@ -136,3 +149,7 @@ class PackageOperation:
         cmd = f'pip uninstall {pname} --yes'
         msg = VenvOperation.activate_venv(vname, cmd)
         return msg
+
+
+if __name__ == '__main__':
+    SbmInit.open_vscode()
