@@ -81,6 +81,7 @@ def uninstall_package(vname, name):
     print(un_msg)
     return redirect(url_for('get_venv_detail', name=vname))
 
+
 @app.route('/code/')
 @app.route('/code/<vname>')
 def code(vname=None):
@@ -90,6 +91,7 @@ def code(vname=None):
     else:
         sbm_win.SbmInit.open_vscode()
         return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
