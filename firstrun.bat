@@ -7,3 +7,4 @@ python -m pip install --upgrade pip
 cd Scripts
 pip install flask -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install virtualenvwrapper-win -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install pylint -i https://pypi.tuna.tsinghua.edu.cn/simple
