@@ -8,8 +8,8 @@
   <a href="https://github.com/SimonWDC/sandboxmanagement/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/github/languages/code-size/SimonWDC/sandboxmanagement?color=red&style=flat-square">
   </a>
-  <a href="https://github.com/SimonWDC/sandboxmanagement">
-    <img src="https://img.shields.io/github/stars/SimonWDC/sandboxmanagement?color=green&style=flat-square">
+  <a href="https://github.com/SimonWDC/sandboxmanagement/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/github/downloads/SimonWDC/sandboxmanagement/total?style=flat-square">
   </a>
   <a href="https://github.com/SimonWDC/sandboxmanagement">
     <img src="https://img.shields.io/github/last-commit/SimonWDC/sandboxmanagement?color=orange&style=flat-square">
@@ -31,7 +31,6 @@ with the help of virtualenv and virtualenvwrapper-win libraries. Version conflic
 
 Download the program and interpreter through 👉🖱[link](https://github.com/SimonWDC/sandboxmanagement/releases/tag/v0.1)
 (Support python version 3.X, if you need to change a different version of the interpreter, you need to name the interpreter folder `pyinterpreter`)
-![](https://img.shields.io/github/downloads/SimonWDC/sandboxmanagement/total?style=flat-square)
 
 ## 使用
 
