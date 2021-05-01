@@ -1,14 +1,39 @@
-# sandboxmanagement
-
-## High performance, visual local sandbox management system
+<div align="center">
+  <img src="https://github.com/SimonWDC/sandboxmanagement/blob/main/static/favicon.png" alt="">
+  <h1>SandboxManagement</h1>
+  <blockquote>High-performance, visualized local sandbox management system </blockquote>
+  <a href="https://github.com/SimonWDC/sandboxmanagement/releases/tag/v0.9_beta">
+    <img src="https://img.shields.io/github/v/release/SimonWDC/sandboxmanagement?style=flat-square" alt="">
+  </a>
+  <a href="https://github.com/SimonWDC/sandboxmanagement/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/github/languages/code-size/SimonWDC/sandboxmanagement?color=red&style=flat-square">
+  </a>
+  <a href="https://github.com/SimonWDC/sandboxmanagement">
+    <img src="https://img.shields.io/github/stars/SimonWDC/sandboxmanagement?color=green&style=flat-square">
+  </a>
+  <a href="https://github.com/SimonWDC/sandboxmanagement">
+    <img src="https://img.shields.io/github/last-commit/SimonWDC/sandboxmanagement?color=orange&style=flat-square">
+  </a>
+  <a href="https://github.com/SimonWDC/sandboxmanagement/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/SimonWDC/sandboxmanagement?color=li&style=flat-square">
+  </a>
+</div>
 
 ---
+## Overview
+SandboxManagement(SBM) is a **high-performance, visualized local sandbox management system**. 
+Users only need to decompress the compressed package and automatically configure the environment through scripts to 
+help python beginners lower the barriers to programming learning. 
+The concise visual page helps python developers manage projects efficiently and avoid site-packages between projects 
+with the help of virtualenv and virtualenvwrapper-win libraries. Version conflict.
 
-## 1. 安装
+## Install
 
-通过👉[链接](https://github.com/SimonWDC/sandboxmanagement/releases/tag/v0.1)下载程序和解释器（支持python版本3.X，若需要可更换不同版本的解释器，需将解释器文件夹命名为`pyinterpreter`）
+Download the program and interpreter through 👉🖱[link](https://github.com/SimonWDC/sandboxmanagement/releases/tag/v0.1)
+(Support python version 3.X, if you need to change a different version of the interpreter, you need to name the interpreter folder `pyinterpreter`)
+![](https://img.shields.io/github/downloads/SimonWDC/sandboxmanagement/total?style=flat-square)
 
-## 2. 使用
+## 使用
 
 1. 第一次安装，解压`sandboxmanagement.zip`后，双击`firstrun.bat`安装依赖和升级pip（安装过程中请不要关闭窗口）
 
