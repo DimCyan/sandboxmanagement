@@ -72,12 +72,12 @@ with the help of virtualenv and virtualenvwrapper-win libraries. Version conflic
    ![code](https://github.com/SimonWDC/sandboxmanagement/blob/main/img/GIF%202021-5-2%2017-05-06.gif)
 
 ## Development & Deployment
-1. Please **make sure** that the Python environment and Pip have been installed and configured in the development environment. 
+1. Please **make sure** that the `Python` environment and `Pip` have been installed and configured in the development environment. 
    
    Python official website 👉[Python](https://www.python.org/)
    
    Pip 👉[Pip](https://pypi.org/project/pip/)
-2. After using git to clone or download the zip, use Pip to install the requirements.
+2. After using `Git` to clone or download the zip, use `Pip` to install the requirements.
   
    ```pip install -r requirements.txt```
    
