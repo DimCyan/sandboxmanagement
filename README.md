@@ -78,6 +78,7 @@ with the help of virtualenv and virtualenvwrapper-win libraries. Version conflic
    
    Pip 👉[Pip](https://pypi.org/project/pip/)
 2. After using git to clone or download the zip, use Pip to install the requirements.
+  
    ```pip install -r requirements.txt```
    
 ## License
