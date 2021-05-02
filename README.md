@@ -32,8 +32,9 @@ with the help of virtualenv and virtualenvwrapper-win libraries. Version conflic
 (Support python version 3.X, if you need to change a different version of the interpreter, 
    you need to name the interpreter folder `pyinterpreter`)
 
-2. For the first installation, after decompressing `sbm.zip`, double-click `firstrun.bat` to install .
-   dependencies and upgrade pip (please do not close the window during the installation process)
+2. For the first installation, after decompressing `sbm.zip`, double-click `firstrun.bat` to install
+   dependencies and upgrade pip.(Temporarily only supports the use of **Windows** system, 
+   please do not close the window during the installation process)
    
    ![firstrun](https://github.com/SimonWDC/sandboxmanagement/blob/main/img/GIF%202021-5-2%2016-47-51.gif)
    
@@ -69,3 +70,16 @@ with the help of virtualenv and virtualenvwrapper-win libraries. Version conflic
 5. Click the button above to open the Vscode editor for Python programming and running Python code.
 
    ![code](https://github.com/SimonWDC/sandboxmanagement/blob/main/img/GIF%202021-5-2%2017-05-06.gif)
+
+## Development & Deployment
+1. Please **make sure** that the Python environment and Pip have been installed and configured in the development environment. 
+   
+   Python official website 👉[Python](https://www.python.org/)
+   
+   Pip 👉[Pip](https://pypi.org/project/pip/)
+2. After using git to clone or download the zip, use Pip to install the requirements.
+   ```pip install -r requirements.txt```
+   
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
