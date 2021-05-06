@@ -81,6 +81,9 @@ with the help of virtualenv and virtualenvwrapper-win libraries. Version conflic
   
    ```pip install -r requirements.txt```
    
+3. Vscode and Python interpreter are modular designed, developers can replace them with any version. 
+   Python needs to rename the folder to `pyinterpreter`, vscode needs to rename the folder to `Code`, 
+   and the exe file needs to be renamed to `code.exe`, and put the user data in the `data` folder.
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
